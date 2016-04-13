@@ -35,6 +35,7 @@
     let nest = d3.nest()
       .key(function(d) { return d.period })
       .sortKeys(function(a,b) { return d3.ascending(period_start(a, data), period_start(b, data)) })
+      .sortValues(function(a,b) { return d3.ascending(a.year, b.year) })
       .entries(data)
 
     let section = d3.select('#timeline').selectAll('section')
