@@ -6,6 +6,8 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed' rel='stylesheet' type='text/css'>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js'></script>
+
 <link href='styles.css' rel='stylesheet' type='text/css'>
 <script src='timeline.js'></script>
 
@@ -20,45 +22,57 @@
 <img src='images/special_rapporteur.jpg'/>
 </div>
 
-<div class='accordion'>
-
-<section id='period-1' class='period'>
-<h2><a href='#period-1'>Pre-1945: The first activists</a></h2>
-<ul>
-
-<li><div class='banner'><div class='year'>1791</div></div>
-<h4>Olympe de Gouges writes ‘Declaration of the Rights of Woman and the Female Citizen’</h4>
-<p>“Woman is born free and remains the equal of man in rights. Social distinctions can only be founded on a common utility.”</p>
-</li>
-
-<li><div class='banner'><div class='year'>1792</div></div>
-<h4>Mary Wollstonecraft publishes ‘A Vindication of the Rights of Woman’</h4>
-<p>“It is time to effect a revolution in female manners - time to restore to them their lost dignity - and make them, as a part of the human species, labour by reforming themselves to reform the world. It is time to separate unchangeable morals from local manners.”</p>
-</li>
-
-</ul>
-</section>
-
-<section id='period-2' class='period'>
-<h2><a href='#period-2'>1945-1962: Securing the legal foundations of equality</a></h2>
-<ul>
-
-<li><div class='banner'><div class='year'>1945</div></div>
-<h4>Title here</h4>
-<p>Lorem ipsum sic amet</p>
-</li>
-
-</ul>
-</section>
-
-<section id='period-3' class='period'>
-<h2><a href='#period-3'>1962-1975: Recognising women's role in development</a></h2>
-</section>
+<div id='timeline' class='accordion'></div>
 
 <script>
+
+  // fetch and visualize data
+  d3.csv('data.csv', function(err, data) {
+    if(err) throw err
+
+    type(data)
+
+    let nest = d3.nest()
+      .key(function(d) { return d.period })
+      .sortKeys(function(a,b) { return d3.ascending(period_start(a, data), period_start(b, data)) })
+      .entries(data)
+
+    let section = d3.select('#timeline').selectAll('section')
+        .data(nest)
+      .enter().append('section')
+        .attr('class', 'period')
+
+    section.append('h2')
+        .html(function(d) { return d.key })
+
+    let entry = section.append('ul').selectAll('li')
+          .data( function(d) { return d.values })
+        .enter().append('li')
+
+    entry.append('div').attr('class', 'banner')
+         .append('div').attr('class', 'year')
+      .html( function(d) { return d.year })
+    entry.append('h4').html( function(d) { return d.title })
+    entry.append('p').html( function(d) { return d.text })
+  })
+
+
+  // accordion effect
   $('.period h2').click( function() {
     $(this).next().slideToggle()
   })
-</script>
 
-</div>
+
+  // convert ajax data file to javascript types
+  function type(data) {
+    data.forEach(function(d) {
+      d.year = +d.year
+    })
+  }
+
+  // determine when a named period started
+  function period_start(name, data) {
+    let i = d3.min(data.map(function(d) { return d.period === name ? d.year : Infinity }))
+    return i
+  }
+</script>

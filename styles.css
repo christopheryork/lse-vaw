@@ -30,11 +30,8 @@ body {
   border: none;
   text-align: center;
   background: #444;
-}
-
-.period > h2 a {
-  text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 .period > ul {
