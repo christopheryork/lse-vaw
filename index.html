@@ -18,7 +18,9 @@
 
 <div id='icons'></div>
 
-<div id='timeline' class='accordion'></div>
+<div id='timeline' class='accordion'>
+  <div class='loader'>Loading...</div>
+</div>
 
 <script>
   var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/12m1zaJVgUwJj3-F19XFAWnyWzbaRHdC3SB-ARDRpf4k/pubhtml';
@@ -30,11 +32,16 @@
 
   // generate timeline
   function visualize(data) {
+    var icons_elem = $('#icons')
+    var timeline_elem = $('#timeline')
+
+    timeline_elem.empty()              // remove loading spinner
+
     type(data)
 
-    icons( $('#icons')[0], data)
+    icons(icons_elem[0], data)
 
-    timeline( $('#timeline')[0], data, function() {
+    timeline(timeline_elem[0], data, function() {
 
       // pause on load; then start closed
       $('.period ul').delay(500).slideUp()
