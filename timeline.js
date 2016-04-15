@@ -1,9 +1,4 @@
-function timeline(elem, callback) {
-  // fetch and visualize data
-  d3.csv('data.csv', function(err, data) {
-    if(err) throw err
-
-    type(data)
+function timeline(elem, data, callback) {
 
     let nest = d3.nest()
       .key(function(d) { return d.period })
@@ -36,12 +31,4 @@ function timeline(elem, callback) {
       return d3.extent(data.filter(function(d) { return d.period === name })
                            .map(function(d) { return d.year }))
     }
-  })
-
-  // convert ajax data file to javascript types
-  function type(data) {
-    data.forEach(function(d) {
-      d.year = +d.year
-    })
-  }
 }
