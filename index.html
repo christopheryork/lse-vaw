@@ -14,12 +14,14 @@
 <script src='timeline.js'></script>
 <script src='icons.js'></script>
 
+<div id='vaw'>
 <div id='header'><img src='images/tackling_violence_roundel.jpg'/></div>
 
 <div id='icons'></div>
 
 <div id='timeline' class='accordion'>
   <div class='loader'>Loading...</div>
+</div>
 </div>
 
 <script>
@@ -44,7 +46,7 @@
     timeline(timeline_elem[0], data, function() {
 
       // pause on load; then start closed
-      $('.period ul').delay(500).slideUp()
+      $('.period ul').delay(500).slideUp(1000)
 
       // accordion effect
       $('.period h2').click( function() {
