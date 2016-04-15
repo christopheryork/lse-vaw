@@ -12,17 +12,11 @@
 
 <link href='styles.css' rel='stylesheet' type='text/css'>
 <script src='timeline.js'></script>
+<script src='icons.js'></script>
 
 <div id='header'><img src='images/tackling_violence_roundel.jpg'/></div>
 
-<div id='icons'>
-<img src='images/commitee.jpg'/>
-<img src='images/court_case.jpg'/>
-<img src='images/declaration.jpg'/>
-<img src='images/judicial_mech.jpg'/>
-<img src='images/treaty.jpg'/>
-<img src='images/special_rapporteur.jpg'/>
-</div>
+<div id='icons'></div>
 
 <div id='timeline' class='accordion'></div>
 
@@ -37,6 +31,8 @@
   // generate timeline
   function visualize(data) {
     type(data)
+
+    icons( $('#icons')[0], data)
 
     timeline( $('#timeline')[0], data, function() {
 
