@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <meta charset='UTF-8'>
-<title>VAW Concertina</title>
+<title>VAW Deflection Viz</title>
 
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed' rel='stylesheet' type='text/css'>
 
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.3/tabletop.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/showdown/1.3.0/showdown.min.js'></script>
@@ -13,21 +12,40 @@
 <script src='lib/tabletop.js'></script>
 
 <link href='styles.css' rel='stylesheet' type='text/css'>
-<script src='timeline.js'></script>
-<script src='icons.js'></script>
 
 <div id='vaw'>
-<div id='header'><img src='images/tackling_violence_roundel.jpg'/></div>
+<!-- <div id='header'><img src='images/tackling_violence_roundel.jpg'/></div> -->
 
-<div id='icons'></div>
+<svg id='viz'></svg>
+</div>
 
-<div id='timeline' class='accordion'>
-  <div class='loader'>Loading...</div>
-</div>
-</div>
+<style>
+.timeline path {
+  stroke: black;
+  fill: none;
+  opacity: .4;
+}
+.timeline circle {
+  r: 10px;
+  opacity: .6;
+}
+
+.axis path {
+  display: none;
+}
+.axis line {
+  stroke: black;
+  fill: none;
+}
+</style>
 
 <script>
   var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/12m1zaJVgUwJj3-F19XFAWnyWzbaRHdC3SB-ARDRpf4k/pubhtml';
+
+  var width = 1150
+  var height = 450
+
+  var margins = { top: 30, right: 30, bottom: 35, left: 50}
 
   // load data
   Tabletop.init( { key: public_spreadsheet_url,
@@ -36,26 +54,86 @@
 
   // generate timeline
   function visualize(data) {
-    var icons_elem = $('#icons')
-    var timeline_elem = $('#timeline')
-
-    timeline_elem.empty()              // remove loading spinner
-
     type(data)
 
-    icons(icons_elem[0], data)
+    var svg = d3.select('#viz')
+      .attr('width', width + margins.left + margins.right)
+      .attr('height', height + margins.top + margins.bottom)
+      .append('g')
+        .attr('transform', 'translate(' + [margins.left, margins.top] + ')')
 
-    timeline(timeline_elem[0], data, function() {
+    var categories = d3.set(data.map(function(d) { return d.category }))
+    categories = categories.values()
+    categories.sort()
 
-      // pause on load; then start closed
-      $('.period ul').delay(500).slideUp(1000)
+    var color = d3.scale.ordinal()
+      .domain(categories)
+      .range(['#705685', '#ba0d5e', '#9da42a', '#e88b00', '#44739b', '#12a19a'])
 
-      // accordion effect
-      $('.period h2').click( function() {
-        $(this).next().slideToggle()
-      })
+    var y = d3.scale.ordinal()
+      .domain(categories)
+      .rangeRoundPoints([height / 3, height - 20])
+    var image_size = y.range()[1] - y.range()[0]
 
+    var years = d3.extent(data, function(d) { return d.year })
+
+    var x = d3.scale.linear()
+      .domain(years)
+      .range([0, width])
+
+    var deflection = d3.range(years[0], years[1]).map(function(yr) {
+      var metric = 0
+      data.forEach(function(d) { metric += 1 / Math.abs(yr - d.year || 1) })
+      return metric
     })
+
+    var deflect = d3.scale.linear()
+      .domain(d3.extent(deflection))
+      .range([0, height / 3])
+
+    console.log(deflection)
+
+    var y_axis = svg.append('g')
+        .attr('class', 'y axis')
+      .selectAll('image')
+        .data(categories)
+      .enter().append('image')
+        .attr('width', image_size)
+        .attr('height', image_size)
+        .attr('x', -image_size)
+        .attr('y', function(d) { return y(d) - image_size / 3 })
+        .attr('xlink:href', function(d) { return 'images/' + d + '.jpg' })
+
+    var x_axis = d3.svg.axis()
+      .orient('bottom')
+      .scale(x)
+      .tickFormat(function(d) { return '' + d })
+
+    svg.append('g')
+      .attr('class', 'x axis')
+      .attr('transform', 'translate(' + [0, height] + ')')
+      .call(x_axis)
+
+    var timeline = svg.append('g')
+      .attr('class', 'timeline')
+
+    var path = timeline.selectAll('path')
+        .data(categories)
+      .enter().append('path')
+
+    var line = d3.svg.line()
+      .x(function(d,i) { return x(years[0] + i) })
+      .interpolate('basis')
+
+    path.attr('d', function(d) { return line.y( function(curvature) { return y(d) - deflect(curvature) })(deflection) })
+
+    var circle = timeline.selectAll('circle')
+        .data(data)
+      .enter().append('circle')
+        .attr('cx', function(d) { return x(d.year) })
+        .attr('cy', function(d) { return y(d.category) - deflect(deflection[d.year - years[0]]) })
+        .attr('fill', function(d) { return color(d.category) })
+
   }
 
   // convert ajax data file to javascript types
