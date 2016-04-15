@@ -1,5 +1,7 @@
 function timeline(elem, data, callback) {
 
+  var converter = new showdown.Converter({headerLevelStart: 4})
+
   var nest = d3.nest()
     .key(function(d) { return d.period })
     .sortKeys(function(a,b) { return d3.ascending(period(a)[0], period(b)[0]) })
@@ -21,8 +23,8 @@ function timeline(elem, data, callback) {
   entry.append('div').attr('class', 'banner')
        .append('div').attr('class', 'year')
     .html( function(d) { return d.year })
-  entry.append('h4').html( function(d) { return d.title })
-  entry.append('p').html( function(d) { return d.text })
+  entry.append('div').html( function(d) { return converter.makeHtml('#' + d.title) })
+  entry.append('div').html( function(d) { return converter.makeHtml(d.text) })
 
   if(callback) { callback.call() }
 
