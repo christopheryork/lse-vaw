@@ -17,6 +17,7 @@
 <!-- <div id='header'><img src='images/tackling_violence_roundel.jpg'/></div> -->
 
 <svg id='viz'></svg>
+
 </div>
 
 <style>
@@ -136,12 +137,9 @@
         .attr('class', 'y axis')
       .selectAll('image')
         .data(categories)
-      .enter().append('image')
-        .attr('width', image_size)
-        .attr('height', image_size)
-        .attr('x', -image_size)
-        .attr('y', function(d) { return y(d) - image_size / 3 })
-        .attr('xlink:href', function(d) { return 'images/' + d + '.jpg' })
+      .enter().append('use')
+        .attr('xlink:href', function(d) { return 'icons.svg#' + d })
+        .attr('transform', function(d) { return 'translate(' + [-30, y(d)-15] +')scale(.5)' })
 
     var x_axis = d3.svg.axis()
       .orient('bottom')
@@ -185,30 +183,32 @@
     label.append('line')
       .attr('y2', function(d) { return y(d.category) - deflect_scale(deflection[d.year]) })
 
-    label.append('rect')
+    var box = label.append('g')
+      .attr('class', 'box')
+      .attr('transform', function(d) { return 'translate(' + (width - x(d.year) > 350 ? 5 : -355) + ')' })
+
+    box.append('rect')
       .attr('x', 5)
       .attr('y', '-0.3em')
       .attr('width', 350)
 
-    label.append('text')
+    box.append('text')
       .attr('class', 'title')
-      .attr('transform', 'translate(5)')
       .attr('x', 0)
       .attr('y', 0)
       .attr('dy', '.66em')
       .text(function(d) { return d.title })
       .call(wrap, 350)
 
-    label.append('text')
+    box.append('text')
       .attr('class', 'blurb')
-      .attr('transform', 'translate(5)')
       .attr('x', 0)
       .attr('y', 0)
       .attr('dy', 3.66 +'em')
       .text(function(d) { return d.text })
       .call(wrap, 350)
 
-    label.each(function() {
+    box.each(function() {
       var me = d3.select(this)
       var lines = me.selectAll('tspan').size() + 3
       me.select('rect')
