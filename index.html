@@ -30,6 +30,31 @@
   opacity: .6;
 }
 
+.timeline line {
+  stroke: black;
+  fill: black;
+  opacity: .4;
+}
+
+.timeline .entry .label .title {
+  font-weight: 900;
+}
+
+.timeline .entry .label {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.timeline .entry rect {
+  fill: white;
+  opacity: 0.8;
+  stroke: none;
+}
+
+.timeline .entry circle:hover ~ .label {
+  visibility: visible;
+}
+
 .axis path {
   display: none;
 }
@@ -90,19 +115,13 @@
 
     var deflection = {}
     deflection[years[0] - running] = 0
-//    deflection[years[1] + running] = 0
+    deflection[years[1] + running] = 0
     data.forEach(function(d0) {
       data.forEach(function(d1) {
         if(Math.abs(d1.year - d0.year) < running) {
           deflection[d1.year] = (deflection[d1.year] || 0) + 1
         }
       })
-    })
-
-    var cat_data_by_year = {}
-    categories.forEach(function(cat) { cat_data_by_year[cat] = Object.assign({}) })
-    data.forEach(function(d) {
-      cat_data_by_year[d.category][d.year] = d
     })
 
     var x = d3.scale.linear()
@@ -147,17 +166,54 @@
         .y(function(d) { return y(cat) - deflect_scale(deflection[d.key]) })
         .interpolate('monotone')
 
-      console.log(d3.entries(deflection))
-
       return line(d3.entries(deflection))
     })
 
-    var circle = timeline.selectAll('circle')
+    var entries_e = timeline.selectAll('.entry')
         .data(data)
-      .enter().append('circle')
-        .attr('cx', function(d) { return x(d.year) })
+      .enter().append('g')
+        .attr('class', 'entry')
+        .attr('transform', function(d) { return 'translate(' + x(d.year) + ')' })
+
+    entries_e.append('circle')
         .attr('cy', function(d) { return y(d.category) - deflect_scale(deflection[d.year]) })
         .attr('fill', function(d) { return color(d.category) })
+
+    var label = entries_e.append('g')
+      .attr('class', 'label')
+
+    label.append('line')
+      .attr('y2', function(d) { return y(d.category) - deflect_scale(deflection[d.year]) })
+
+    label.append('rect')
+      .attr('x', 5)
+      .attr('y', '-0.3em')
+      .attr('width', 350)
+
+    label.append('text')
+      .attr('class', 'title')
+      .attr('transform', 'translate(5)')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dy', '.66em')
+      .text(function(d) { return d.title })
+      .call(wrap, 350)
+
+    label.append('text')
+      .attr('class', 'blurb')
+      .attr('transform', 'translate(5)')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('dy', 3.66 +'em')
+      .text(function(d) { return d.text })
+      .call(wrap, 350)
+
+    label.each(function() {
+      var me = d3.select(this)
+      var lines = me.selectAll('tspan').size() + 3
+      me.select('rect')
+        .attr('height', lines + 'em')
+    })
   }
 
   // convert ajax data file to javascript types
@@ -166,4 +222,29 @@
       d.year = +d.year
     })
   }
+
+  // from https://bl.ocks.org/mbostock/7555321
+  function wrap(text, width) {
+    text.each(function() {
+      var text = d3.select(this),
+          words = text.text().split(/\s+/).reverse(),
+          word,
+          line = [],
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          y = text.attr("y"),
+          dy = parseFloat(text.attr("dy")),
+          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+      while (word = words.pop()) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        }
+      }
+    });
+}
 </script>
