@@ -24,15 +24,19 @@ body {
 }
 
 .event .anchor {
+  opacity: 1; !important; /* TODO important */
+}
+
+.event .anchor {
   r: 20px;
   stroke: white;
   stroke-width: 5px;
-  fill: pink;
+  fill: lightblue;
 }
 
-.event line {
-  opacity: 0.3;
-  stroke-width: 3px;
+.event .pole {
+  stroke-width: 2px;
+  fill: none;
 }
 
 .event .badge {
@@ -41,13 +45,13 @@ body {
 
 .event .badge .year {
   r: 1.5em;  /* keyed to badge font size */
-  fill: pink;
+  fill: lightblue;
   stroke: none;
 }
 
 .event .badge .year.border {
   r: 1.7em;  /* keyed to badge font size */
-  stroke: pink;
+  stroke: lightblue;
   stroke-width: 5px;
   fill: white;
 }
@@ -70,6 +74,12 @@ body {
 
 .axis .domain {
   display: none;
+}
+
+.cursor {
+  fill: black;
+  stroke: none;
+  opacity: 0.025;
 }
 
 .ether {

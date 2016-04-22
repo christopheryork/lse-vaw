@@ -10,6 +10,9 @@ const MARGINS = { top: 100, right: 100, bottom: 150, left: 100 }
 const FISHEYE_DISTORTION = 8
 const FISHEYE_DUR = 2000
 
+const BLURB_WIDTH = 350
+
+const CURSOR_PROPORTION = 0.2
 
 // state
 
@@ -40,26 +43,22 @@ Tabletop.init({ key: DATA_URL,
 
 // change fisheye distortion to focus on given screen point
 let focus_time
+
 function focus(center) {
+  let dur = FISHEYE_DUR
   if(center) {
     focus_time = focus_time || new Date()
-    let dur = Math.max(0, FISHEYE_DUR - (new Date() - focus_time))
-    x.focus(center[0])
-     .distortion(FISHEYE_DISTORTION)
-    update(dur)
+    dur = Math.max(0, FISHEYE_DUR - (new Date() - focus_time))
   } else {
     focus_time = null
-    x.distortion(0)
-    update(FISHEYE_DUR)
   }
+  update(dur, center)
 }
 
 // run once to set up state
 function install(elem, new_data) {
 
   data = new_data
-
-  console.log(data)
 
   // set up global state
   width = window.innerWidth - MARGINS.left - MARGINS.right
@@ -104,14 +103,35 @@ function install(elem, new_data) {
     .enter().append('g')
       .attr('class', 'event')
 
-  event.append('line')
-    .attr('y2', 0)
+  let blurb = event.append('g')
+    .attr('class', 'blurb stage_1')
+    .attr('transform', 'translate(15,15)')
+
+  blurb.append('text')
+    .attr('class', 'title')
+    .attr('x', 0)
+    .attr('y', '5em')
+    .attr('dy', '.66em')
+    .text( (d) => d.title )
+    .call(wrap, BLURB_WIDTH)
+
+  blurb.append('text')
+    .attr('class', 'text')
+    .attr('x', 0)
+    .attr('y', '7em')
+    .attr('dy', '.66em')
+    .text( (d) => d.text )
+    .call(wrap, BLURB_WIDTH)
+
+  event.append('path')
+    .attr('class', 'pole stage_1')
 
   event.append('circle')
-    .attr('class', 'anchor')
+    .attr('class', 'anchor stage_0')
 
   let badge = event.append('g')
-    .attr('class', 'badge')
+    .attr('class', 'badge stage_1')
+    .attr('transform', 'translate(' + (BLURB_WIDTH/2) + ')')
 
   badge.append('circle')
     .attr('class', 'year border')
@@ -124,12 +144,21 @@ function install(elem, new_data) {
     .attr('dy', '.3em')
     .text( (d) => d.year )
 
+  let cursor = svg.append('path')
+    .attr('class', 'cursor')
+
   update()
+
+  d3.selectAll('.stage_1')
+    .attr('opacity', 0)
 }
 
-function update(dur=0) {
+function update(dur=0, center=null) {
 
   // immediate changes
+
+  x.distortion(center ? FISHEYE_DISTORTION : 0)
+   .focus(center ? center[0] : 0)
 
   x.range([0, width])
   y.range([height, height * 1 / 5])
@@ -148,6 +177,11 @@ function update(dur=0) {
 
   // (possibly) animated changes
 
+  let opacity = d3.scalePow()
+    .exponent(.5)
+    .domain([0, width/2])
+    .range([1, 0])
+
   let line = d3.area()
     .x( (d) => x(d[0]) )
     .y1( (d) => y(d[1]) )
@@ -163,25 +197,34 @@ function update(dur=0) {
   svg.selectAll('.event')
     .attr('transform', (d) => 'translate(' + x(d.year) + ')')
 
-  svg.selectAll('.event line')
-    .attr('y1', height)
+  svg.selectAll('.event .pole')
+    .attr('d', 'M0 ' + height + 'V0H' + (BLURB_WIDTH / 2))
 
   svg.selectAll('.event .anchor')
     .attr('cy', height)
 
-  let post_axis = svg.select('.x.axis')
+  svg.selectAll('.event .stage_1')
+    .attr('opacity', (d) => center ? opacity(Math.abs(center[0] - x(d.year))) : 0)
+
+//      (center && Math.abs(center[0] - x(d.year)) < width * CURSOR_PROPORTION / 2 ? 1 : 0))
+
+  let x_axis = svg.select('.x.axis')
     .call(axis)
 
-  post_axis.selectAll('line')
+  x_axis.selectAll('line')
       .attr('y2', '4em')
       .attr('y1', -height)
 
-  post_axis.selectAll('text')
+  x_axis.selectAll('text')
         .style('text-anchor', 'start')
         .attr('transform', 'rotate(-90)')
         .attr('x', '-4em')
         .attr('y', 0)
         .attr('dy', '-.3em')
+
+  svg.select('.cursor')
+     .attr('d', center ? 'M' + (center[0] - width * CURSOR_PROPORTION / 2) + ' ' + -MARGINS.top + 'h' + (width * CURSOR_PROPORTION) +
+                         'v' + (height + MARGINS.top + MARGINS.bottom) + 'h' + -(width * CURSOR_PROPORTION) : '')
 }
 
 
