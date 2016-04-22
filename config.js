@@ -22,7 +22,7 @@ System.config({
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.6",
-    "d3": "npm:d3@3.5.16",
+    "d3": "npm:d3@4.0.0-alpha.29",
     "normalize": "npm:normalize@0.3.1",
     "showdown": "github:showdownjs/showdown@1.3.0",
     "tabletop": "npm:tabletop@1.4.3",
@@ -365,6 +365,72 @@ System.config({
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:d3-axis@0.3.0": {
+      "d3-scale": "npm:d3-scale@0.6.4",
+      "d3-selection": "npm:d3-selection@0.7.0",
+      "d3-transition": "npm:d3-transition@0.2.8"
+    },
+    "npm:d3-dsv@0.3.1": {
+      "rw": "npm:rw@1.3.2"
+    },
+    "npm:d3-interpolate@0.7.0": {
+      "d3-color": "npm:d3-color@0.4.2"
+    },
+    "npm:d3-request@0.4.5": {
+      "d3-collection": "npm:d3-collection@0.1.2",
+      "d3-dispatch": "npm:d3-dispatch@0.4.3",
+      "d3-dsv": "npm:d3-dsv@0.3.1",
+      "xmlhttprequest": "npm:xmlhttprequest@1.8.0"
+    },
+    "npm:d3-scale@0.6.4": {
+      "d3-array": "npm:d3-array@0.7.1",
+      "d3-collection": "npm:d3-collection@0.1.2",
+      "d3-color": "npm:d3-color@0.4.2",
+      "d3-format": "npm:d3-format@0.5.1",
+      "d3-interpolate": "npm:d3-interpolate@0.7.0",
+      "d3-time": "npm:d3-time@0.2.5",
+      "d3-time-format": "npm:d3-time-format@0.3.1"
+    },
+    "npm:d3-shape@0.6.0": {
+      "d3-path": "npm:d3-path@0.1.5"
+    },
+    "npm:d3-time-format@0.3.1": {
+      "d3-time": "npm:d3-time@0.2.5"
+    },
+    "npm:d3-transition@0.2.8": {
+      "d3-color": "npm:d3-color@0.4.2",
+      "d3-dispatch": "npm:d3-dispatch@0.4.3",
+      "d3-ease": "npm:d3-ease@0.7.0",
+      "d3-interpolate": "npm:d3-interpolate@0.7.0",
+      "d3-selection": "npm:d3-selection@0.7.0",
+      "d3-timer": "npm:d3-timer@0.4.1"
+    },
+    "npm:d3@4.0.0-alpha.29": {
+      "d3-array": "npm:d3-array@0.7.1",
+      "d3-axis": "npm:d3-axis@0.3.0",
+      "d3-collection": "npm:d3-collection@0.1.2",
+      "d3-color": "npm:d3-color@0.4.2",
+      "d3-dispatch": "npm:d3-dispatch@0.4.3",
+      "d3-dsv": "npm:d3-dsv@0.3.1",
+      "d3-ease": "npm:d3-ease@0.7.0",
+      "d3-format": "npm:d3-format@0.5.1",
+      "d3-hierarchy": "npm:d3-hierarchy@0.2.0",
+      "d3-interpolate": "npm:d3-interpolate@0.7.0",
+      "d3-path": "npm:d3-path@0.1.5",
+      "d3-polygon": "npm:d3-polygon@0.2.1",
+      "d3-quadtree": "npm:d3-quadtree@0.2.1",
+      "d3-queue": "npm:d3-queue@2.0.3",
+      "d3-random": "npm:d3-random@0.2.1",
+      "d3-request": "npm:d3-request@0.4.5",
+      "d3-scale": "npm:d3-scale@0.6.4",
+      "d3-selection": "npm:d3-selection@0.7.0",
+      "d3-shape": "npm:d3-shape@0.6.0",
+      "d3-time": "npm:d3-time@0.2.5",
+      "d3-time-format": "npm:d3-time-format@0.3.1",
+      "d3-timer": "npm:d3-timer@0.4.1",
+      "d3-transition": "npm:d3-transition@0.2.8",
+      "d3-voronoi": "npm:d3-voronoi@0.3.2"
     },
     "npm:dateformat@1.0.12": {
       "get-stdin": "npm:get-stdin@4.0.1",
@@ -1007,6 +1073,11 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
+    "npm:rw@1.3.2": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:sax@0.5.8": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
@@ -1225,6 +1296,15 @@ System.config({
       "isexe": "npm:isexe@1.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:xmlhttprequest@1.8.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "http": "github:jspm/nodelibs-http@1.7.1",
+      "https": "github:jspm/nodelibs-https@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "url": "github:jspm/nodelibs-url@0.1.0"
     }
   }
 });
