@@ -3,6 +3,6 @@
 
 TODO
 
-- [ ] add more widgets
+- [ ] extract data from html file
 - [ ] legacy browser flexbox support
 - [ ] build script to compress assets
