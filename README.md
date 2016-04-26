@@ -3,5 +3,5 @@
 
 TODO
 
-[ ] legacy browser flexbox support
-[ ] build script to compress assets
+- [ ] legacy browser flexbox support
+- [ ] build script to compress assets
