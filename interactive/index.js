@@ -1,10 +1,7 @@
-import Tabletop from 'tabletop'
 import d3 from 'd3'
 
 import fe from './fisheye'
 
-
-const DATA_URL = 'https://docs.google.com/spreadsheets/d/12m1zaJVgUwJj3-F19XFAWnyWzbaRHdC3SB-ARDRpf4k/pubhtml'
 const MARGINS = { top: 100, right: 100, bottom: 150, left: 100 }
 
 const FISHEYE_DISTORTION = 8
@@ -24,22 +21,20 @@ let data, density
 
 
 // bootstrap
-Tabletop.init({ key: DATA_URL,
-                simpleSheet: true,
-                callback: (data) => {
-                  // convert data to javascript types
-                  data.forEach( (d) => { d.year = + d.year } )
-                  // load and install visualization
-                  install(document.body, data)
-                  // update the installed visualization
-                  throttle('resize', 'optimizedResize')
-                  d3.select(window).on('optimizedResize', resize)
-                  // animate to new focus on mouse hover
-                  d3.select('svg .ether')
-                    .on('mousemove', function() { focus(d3.mouse(this)) })
-                    .on('mouseout',  function() { focus(null) })
-                }
-              })
+d3.tsv('./data.tsv', (err, data) => {
+  if(err) throw err
+  // convert data to javascript types
+  data.forEach( (d) => { d.year = + d.year } )
+  // load and install visualization
+  install(document.body, data)
+  // update the installed visualization
+  throttle('resize', 'optimizedResize')
+  d3.select(window).on('optimizedResize', resize)
+  // animate to new focus on mouse hover
+  d3.select('svg .ether')
+    .on('mousemove', function() { focus(d3.mouse(this)) })
+    .on('mouseout',  function() { focus(null) })
+})
 
 // change fisheye distortion to focus on given screen point
 let focus_time
