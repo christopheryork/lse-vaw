@@ -21,10 +21,11 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
+    "cheerio": "npm:cheerio@0.20.0",
     "core-js": "npm:core-js@1.2.6",
     "d3": "npm:d3@4.0.0-alpha.29",
+    "form-data": "npm:form-data@1.0.0-rc4",
     "fs": "github:jspm/nodelibs-fs@0.1.2",
-    "jsdom": "npm:jsdom@8.4.0",
     "normalize": "npm:normalize@0.3.1",
     "showdown": "github:showdownjs/showdown@1.3.0",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -248,6 +249,16 @@ System.config({
       "strip-ansi": "npm:strip-ansi@3.0.1",
       "supports-color": "npm:supports-color@2.0.0"
     },
+    "npm:cheerio@0.20.0": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "css-select": "npm:css-select@1.2.0",
+      "dom-serializer": "npm:dom-serializer@0.1.0",
+      "entities": "npm:entities@1.1.1",
+      "htmlparser2": "npm:htmlparser2@3.8.3",
+      "jsdom": "npm:jsdom@7.2.2",
+      "lodash": "npm:lodash@4.11.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
     "npm:cipher-base@1.0.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "inherits": "npm:inherits@2.0.1",
@@ -317,6 +328,13 @@ System.config({
       "pbkdf2": "npm:pbkdf2@3.0.4",
       "public-encrypt": "npm:public-encrypt@4.0.0",
       "randombytes": "npm:randombytes@2.0.3"
+    },
+    "npm:css-select@1.2.0": {
+      "boolbase": "npm:boolbase@1.0.0",
+      "css-what": "npm:css-what@2.1.0",
+      "domutils": "npm:domutils@1.5.1",
+      "nth-check": "npm:nth-check@1.0.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:cssstyle@0.2.34": {
       "cssom": "npm:cssom@0.3.1",
@@ -421,6 +439,17 @@ System.config({
       "randombytes": "npm:randombytes@2.0.3",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
+    "npm:dom-serializer@0.1.0": {
+      "domelementtype": "npm:domelementtype@1.1.3",
+      "entities": "npm:entities@1.1.1"
+    },
+    "npm:domhandler@2.3.0": {
+      "domelementtype": "npm:domelementtype@1.1.3"
+    },
+    "npm:domutils@1.5.1": {
+      "dom-serializer": "npm:dom-serializer@0.1.0",
+      "domelementtype": "npm:domelementtype@1.1.3"
+    },
     "npm:ecc-jsbn@0.1.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
@@ -431,6 +460,12 @@ System.config({
       "brorand": "npm:brorand@1.0.5",
       "hash.js": "npm:hash.js@1.0.3",
       "inherits": "npm:inherits@2.0.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:entities@1.0.0": {
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:entities@1.1.1": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:escodegen@1.8.0": {
@@ -528,6 +563,17 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
+    "npm:htmlparser2@3.8.3": {
+      "domelementtype": "npm:domelementtype@1.1.3",
+      "domhandler": "npm:domhandler@2.3.0",
+      "domutils": "npm:domutils@1.5.1",
+      "entities": "npm:entities@1.0.0",
+      "events": "github:jspm/nodelibs-events@0.1.1",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "stream": "github:jspm/nodelibs-stream@0.1.0",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2",
+      "util": "github:jspm/nodelibs-util@0.1.0"
+    },
     "npm:http-signature@1.1.1": {
       "assert-plus": "npm:assert-plus@0.2.0",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -561,11 +607,11 @@ System.config({
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "jsbn": "npm:jsbn@0.1.0"
     },
-    "npm:jsdom@8.4.0": {
+    "npm:jsdom@7.2.2": {
       "abab": "npm:abab@1.0.3",
       "acorn": "npm:acorn@2.7.0",
       "acorn-globals": "npm:acorn-globals@1.0.9",
-      "array-equal": "npm:array-equal@1.0.0",
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "cssom": "npm:cssom@0.3.1",
@@ -578,7 +624,6 @@ System.config({
       "parse5": "npm:parse5@1.5.1",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "querystring": "github:jspm/nodelibs-querystring@0.1.0",
       "request": "npm:request@2.72.0",
       "sax": "npm:sax@1.2.1",
       "symbol-tree": "npm:symbol-tree@3.1.4",
@@ -586,8 +631,8 @@ System.config({
       "tough-cookie": "npm:tough-cookie@2.2.2",
       "url": "github:jspm/nodelibs-url@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0",
-      "webidl-conversions": "npm:webidl-conversions@3.0.1",
-      "whatwg-url": "npm:whatwg-url@2.0.1",
+      "webidl-conversions": "npm:webidl-conversions@2.0.1",
+      "whatwg-url-compat": "npm:whatwg-url-compat@0.6.5",
       "xml-name-validator": "npm:xml-name-validator@2.0.1"
     },
     "npm:jsonpointer@2.0.0": {
@@ -604,6 +649,10 @@ System.config({
     "npm:levn@0.3.0": {
       "prelude-ls": "npm:prelude-ls@1.1.2",
       "type-check": "npm:type-check@0.3.2"
+    },
+    "npm:lodash@4.11.1": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:lru-cache@4.0.1": {
       "pseudomap": "npm:pseudomap@1.0.2",
@@ -639,6 +688,11 @@ System.config({
     },
     "npm:normalize@0.3.1": {
       "stylus": "npm:stylus@0.54.2"
+    },
+    "npm:nth-check@1.0.1": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "boolbase": "npm:boolbase@1.0.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:nwmatcher@1.3.7": {
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -929,11 +983,10 @@ System.config({
     "npm:vm-browserify@0.0.4": {
       "indexof": "npm:indexof@0.0.1"
     },
-    "npm:whatwg-url@2.0.1": {
+    "npm:whatwg-url-compat@0.6.5": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "punycode": "github:jspm/nodelibs-punycode@0.1.0",
-      "tr46": "npm:tr46@0.0.3",
-      "webidl-conversions": "npm:webidl-conversions@3.0.1"
+      "tr46": "npm:tr46@0.0.3"
     },
     "npm:xmlhttprequest@1.8.0": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
