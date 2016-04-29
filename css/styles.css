@@ -1,8 +1,21 @@
 #timeline,
 #header {
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 13pt; color: #666666;
+  line-height: 1.5;
+}
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 12pt; color: #666666;
   line-height: 1.5;
+
+  margin: 0px;
+  margin-left:20px;
+  margin-right:20px;
+  margin-bottom:25px;
+  text-align: left;
+   
 }
 
 #timeline {
@@ -24,6 +37,15 @@
   color: white;
   opacity: .7;
   margin: 1em;
+}
+
+h4 {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 13pt;
+	color: #425280;
+	line-height: 1.5;
+	margin-top: 30px;
+	text-align: left;
 }
 
 #icons {
@@ -57,10 +79,10 @@
 
 #timeline .period li:after {
   width: 100px;
-  height: 5px;
+  height: 4px;
   background: #9393b8;
   margin: auto;
-  margin-top: .5em;
+  margin-top: 1.5em;
   margin-bottom: 1.5em;
 
   display: block;
@@ -77,6 +99,7 @@
   background-color: #00A19A;
   border: 4px solid #fff;
   box-shadow: 0 0 0 5px #00A19A;
+  margin-bottom:25px;
 
   display: flex;
   align-items: center;
@@ -118,6 +141,7 @@
 }
 
 #timeline .link a:before {
+	margin-top:20px;
   content: url('../vaw_images/link_image.jpg');
   display: flex;
   justify-content: center;
@@ -213,7 +237,7 @@
 #timeline.accordion > section:nth-child(4) .banner { background: #e7e7e7; }
 #timeline.accordion > section:nth-child(4) .year { background-color: #878786; box-shadow : 0 0 0 5px #878786; }
 #timeline.accordion > section:nth-child(5) h2 { background: #CF0054; }
-#timeline.accordion > section:nth-child(5) .banner { background: #f9e9ef; }
+#timeline.accordion > section:nth-child(5) .banner { background: #f7cedc; }
 #timeline.accordion > section:nth-child(5) .year { background-color: #CF0054; box-shadow : 0 0 0 5px #CF0054; }
 #timeline.accordion > section:nth-child(6) h2 { background: #F7931E; }
 #timeline.accordion > section:nth-child(6) .banner { background: #fde9d2; }
