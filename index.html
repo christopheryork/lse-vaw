@@ -3,13 +3,21 @@
 <title>VAW Concertina</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
 
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed' rel='stylesheet' type='text/css'>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
 
 <link href='css/styles.css' rel='stylesheet' type='text/css'>
+
+<!-- TODO
+  smaller link icon               DONE
+  a link change to purple         DONE
+  left justify all text
+  back link only when expanded
+  add back in responsiveness
+-->
 
 <body>
 <div class="w3-container">
@@ -26,6 +34,8 @@
 </div>
 
 <div id='timeline' class='accordion'>
+
+<img id='back' src='vaw_images/back.png'/>
 
 <section class='period'>
 <h2>1791 – 1945: The First Activists</h2>
@@ -701,6 +711,22 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
   // accordion effect
   $('.period h2').click( function() {
     $(this).next().slideToggle()
+  })
+
+  // close accordion button
+  var scroll_begin = 400
+  $('#back').click( function() {
+    $('ul').slideUp()
+  })
+
+  $(window).scroll(function(e) {
+    var scroll = $(window).scrollTop()
+    console.log(scroll)
+    if (scroll > scroll_begin) {
+      $('#back').addClass('active')
+    } else {
+      $('#back').removeClass('active')
+    }
   })
 
 </script>
