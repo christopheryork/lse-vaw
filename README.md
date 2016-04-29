@@ -4,5 +4,15 @@
 
 ### HTML/Mobile version
 
-- [ ] Figure out git workflow
-- [ ] Enter remainder of client text
+- [x] Figure out git workflow
+- [x] Enter remainder of client text
+- [x] smaller link icon
+- [x] a link change to purple
+- [x] left justify all text
+- [x] back link only when expanded
+- [ ] add back in responsiveness NOT NECESSARY?
+- [x] stack two header images
+
+- [x] years are too high
+- [ ] center images
+- [ ] vertical spacing
