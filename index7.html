@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>VAW Concertina</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed' rel='stylesheet' type='text/css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<style>
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12pt; color: #666666;
+  line-height: 1.5;
+
+  margin: 0px;
+  margin-left:20px;
+  margin-right:20px;
+  text-align: left;
+   
+}
+
+h4 {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 13pt;
+	color: #425280;
+	line-height: 1.5;
+	margin: 0px;
+	text-align: left;
+}
+
+
+
+/* unvisited link */
+body a:link {
+    color: #e94e1b;
+	text-decoration: none;
+}
+
+/* visited link */
+body a:visited {
+    color: #e94e1b;
+	text-decoration: none;
+}
+
+/* mouse over link */
+body a:hover {
+    color: #795197;
+	text-decoration: none;
+}
+
+/* selected link */
+body a:active {
+    color: #e94e1b;
+	text-decoration: none;
+}
+
+IMG.displayed {
+    display: block;
+	margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; }
+	
+	
+#header {
+height: 300px;
+  background: #231c4e;
+  margin-bottom: 3em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#icons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  flex: 0 1 auto;
+}
+
+.period > h2 {
+  font-size: 12pt;
+  padding: 10px;
+  border-radius: 2em;
+  border: none;
+  text-align: center;
+  background: #444;
+}
+
+.period > h2 a {
+  text-decoration: none;
+  color: white;
+}
+
+.period > ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.period li {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.period li:after {
+  width: 100px;
+  height: 6px;
+  background: #9393b8;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 2em;
+
+  display: block;
+  content:"";
+}
+
+.year {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #00A19A; border: 4px solid #fff; box-shadow: 0 0 0 5px #00A19A; display: flex; align-items: center; justify-content: center;}
+.year2 {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #93c01f; border: 4px solid #fff; box-shadow: 0 0 0 5px #93c01f; display: flex; align-items: center; justify-content: center;}
+.year3 {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #795197; border: 4px solid #fff; box-shadow: 0 0 0 5px #795197; display: flex; align-items: center; justify-content: center;}
+.year4 {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #868686; border: 4px solid #fff; box-shadow: 0 0 0 5px #868686; display: flex; align-items: center; justify-content: center;}
+.year5 {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #d70b52; border: 4px solid #fff; box-shadow: 0 0 0 5px #d70b52; display: flex; align-items: center; justify-content: center;}
+.year6 {font-size: 21pt; color: white; width: 75px; height: 75px; border-radius: 50%; background-color: #f7931e; border: 4px solid #fff; box-shadow: 0 0 0 5px #f7931e ; display: flex; align-items: center; justify-content: center;}
+
+
+
+
+
+.banner { width:100%; height: 40px; background: #CFE4E3; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+.banner2 { width:100%; height: 40px; background: #e9f2d3; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+.banner3 { width:100%; height: 40px; background: #e4dceb; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+.banner4 { width:100%; height: 40px; background: #e7e7e7; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+.banner5 { width:100%; height: 40px; background: #f7cedc; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+.banner6 { width:100%; height: 40px; background: #fde9d2; margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center;}
+
+
+
+
+.period h4 {
+  margin-top: 1em;
+  margin-bottom: 0em;
+}
+
+.accordion > section:nth-child(1) h2 { background : #24A29A; }
+.accordion > section:nth-child(2) h2 { background : #94C425; }
+.accordion > section:nth-child(3) h2 { background : #784E97; }
+.accordion > section:nth-child(4) h2 { background : #878786; }
+.accordion > section:nth-child(5) h2 { background : #CF0054; }
+.accordion > section:nth-child(6) h2 { background : #F7931E; }
+
+</style>
+
+
+<body>
+<div class="w3-container">
+
+<div id="header"><img src="vaw_images/tackling_violence_roundel.jpg"/></div>
+
+<div id="icons">
+<img src="vaw_images/commitee.jpg"/>
+<img src="vaw_images/court_case.jpg"/>
+<img src="vaw_images/declaration.jpg"/>
+<img src="vaw_images/judicial_mech.jpg"/>
+<img src="vaw_images/treaty.jpg"/>
+<img src="vaw_images/special_rapporteur.jpg"/>
+</div>
+
+<div class="accordion">
+
+<section id="period-1" class="period">
+<h2><a href="#period-1">1791 – 1945: The First Activists</a></h2>
+<ul>
+
+<li><div class="banner"><div class="year">1791</div></div>
+  <h4>In response to France’s Declaration on the Rights of Man, Olympe de Gouges writes the ‘Declaration of the Rights of Woman and the Female Citizen’ </h4>
+  <p>“Article 1: Woman is born free and remains the equal of man in rights. Social distinctions can only be founded on a common utility.”</p>
+</li>
+
+<li><div class="banner"><div class="year">1792</div></div>
+  <h4>Mary Wollstonecraft publishes ‘A Vindication of the Rights of Woman’</h4>
+  <p>“It is time to effect a revolution in female manners - time to restore to them their lost dignity - and make them, as a part of the human species, labour by reforming themselves to reform the world. It is time to separate unchangeable morals from local manners.”</p>
+</li>
+<li><div class="banner"><div class="year">1792</div></div>
+<h4>Mary Wollstonecraft publishes ‘A Vindication of the Rights of Woman’</h4>
+<p>“…if they be really capable of acting like rational creatures, let them not be treated like slaves; or, like the brutes who are dependent on the reason of man, when they associate with him; but cultivate their minds, give them the salutary sublime curb of principle, and let them attain conscious dignity by feeling themselves only dependent on God.”</p>
+</li>
+
+
+<li><div class='banner'><div class='year'>1878</div></div>
+<h4>Frances Power Cobbe publishes ‘Wife Torture in England,’ to support a new law that would expand legal options available to survivors of domestic violence</h4>
+<p>6000 brutal attacks by intimate partners are documented over a three year period, including the use of sulfuric acid to induce blindness, burning and murder.</p>
+</li>
+
+<li><div class='banner'><div class='year'>1878</div></div>
+<h4>The first International Congress on Women’s Rights is held in Paris, France</h4>
+<p>"Last evening a gentleman who seemed a bit sceptical about the advantages of our Congress asked me, ‘Well, Madame, what great truth have you proclaimed to the world?' I replied to him, ‘Monsieur, we have proclaimed that woman is a human being.' He laughed. ‘But, Madame, that is a platitude.' So it is; but when this platitude, which everyone accepts with a smile when it is merely a question of words, is recognised by human laws, the face of the world will be transformed. Certainly, then, there would be no need for us to assemble in congress to demand the rights of woman." 
+  <strong>Emily Venturi</strong> </p>
+</li>
+
+
+<li><div class='banner'><div class='year'>1888</div></div>
+<h4>International Council of Women</h4>
+<p>The first and oldest existing international women’s organisation, is founded.</p>
+</li>
+
+<li><div class='banner'><div class='year'>1893</div></div>
+<h4>New Zealand becomes the first country in the world to grant women the right to vote, however it is not until 1919 that they are allowed to stand for Parliament. </h4>
+<p></p>
+</li>
+
+<li><div class='banner'><div class='year'>1902</div></div>
+<h4>At the Second International Congress of Women, a group leaves the International Council of Women to form the International Alliance of Women </h4>
+<p></p>
+</li>
+
+<li><div class='banner'><div class='year'>1911</div></div>
+<h4>The first International Women’s Day is celebrated in 4 countries: Austria, Denmark, Germany and Switzerland. </h4>
+<p>Despite this recognition, Switzerland does not grant women unrestricted voting rights in national and local elections until 1990. </p>
+</li>
+
+<li><div class='banner'><div class='year'>1915</div></div>
+<h4>A Call to the Women of All Nations: the Third International Congress of concludes with the formation of the Women’s International League for Peace and Freedom</h4>
+<p></p>
+</li>
+
+<li><div class='banner'><div class='year'>1918</div></div>
+<h4>Pink or Blue? An American Magazine publishes an article on which colour is most appropriate for newborns </h4>
+<p>“There has been a great diversity of opinion on the subject, but the generally accepted rule is <span style="color:#d70b52">pink for the boy and blue for the girl.</span>The reason is that pink being a more decided and stronger colour is more suitable for the boy; while blue, which is more delicate and dainty, is prettier for the girl.” </p>
+</li>
+
+<li><div class='banner'><div class='year'>1919</div></div>
+<h4>At the Paris Peace Conference, representatives from 14 different states meet to discuss the establishment of the League of Nations and International Labour Organization </h4>
+<p>Women attendees form the Inter-Allied Suffrage Conference. They are given the right to participate in certain peace conference commissions and to meet with representatives at the League of Nations.</p>
+</li>
+
+<li><div class='banner'><div class='year'>1920</div></div>
+<h4>The Covenant of the League of Nations formally creates the League of Nations.</h4>
+<p> o	Article 23 of the Covenant recognises women’s right to “fair and humane conditions of labour” and the problem of human trafficking specifically for women and children.  </p>
+</li>
+
+<li><div class='banner'><div class='year'>1928</div></div>
+<h4>The Sixth International Conference of American States in Havana, Cuba, establishes the <span style="color:#d70b52">Inter-American Commission of Women</span> – the first inter-governmental body dedicated to the recognition of women’s rights.</h4>
+<p> </p>
+</li>
+
+<li><div class='banner'><div class='year'>1932</div></div>
+<h4>Women successfully demand the right to attend meetings, access official documents, distribute their statements and interact with state delegates at the League of Nations World Disarmament Conference. </h4>
+<p> </p>
+</li>
+
+<li><div class='banner'><div class='year'>1933</div></div>
+<h4>Sigmund Freud publishes ‘The Psychology of Women’.</h4>
+<p>“Throughout the ages, the problem of woman has puzzled people of every kind – you too will have pondered over this question insofar as you are men. From the women among you that is not to be expected, for you are the riddle yourselves.”</p>
+</li>
+
+
+<li><div class='banner'><div class='year'>1937</div></div>
+<h4>The League of Nations establishes the Committee of Experts on the Legal Status of Women, predecessor to the Commission on the Status of Women (1946)</h4>
+<p> </p>
+</li>
+
+<li><div class='banner'><div class='year'>1944</div></div>
+<h4>Huda Shaarawi organises the first Arab Feminist Conference in Cairo, Egypt.</h4>
+<p> </p>
+</li>
+
+<li><div class='banner'><div class='year'>1944</div></div>
+<h4>Helene Deutsch, a student of Sigmund Freud, publishes ‘The Psychology of Women Vol. 1’ where she outlines the ‘feminine core’ or “the foundations of the feminine personality”: narcissism, passivity and masochism. </h4>
+<p> </p>
+</li>
+
+
+
+
+</ul>
+</section>
+
+<!-- end section 1 -->
+
+
+
+
+
+<section id="period-2" class="period">
+<h2><a href="#period-2">1945 – 1962: Securing the Legal Foundations of Women’s Rights</a></h2>
+
+<ul>
+<li><div class='banner2'><div class='year2'>1945</div></div>
+<h4><span style="color:#d70b52">Charter of the United Nations</span> is signed by delegates in San Francisco, California at the conclusion of the United Nations Conference on International Organisation and enters into force later that year in October. Only 4 of the 26 signatories are women. </h4>
+<p>"We the peoples of the United Nations determined to reaffirm faith in fundamental human rights, in the dignity and worth of the human person, <span style="color:#d70b52">in the equal rights of men and women </span>and of nations large and small…" </p>
+</li>
+
+<li><div class='banner2'><div class='year2'>1946</div></div>
+<h4>Economic and Social Council of the United Nations establishes the Commission on Human Rights, replaced by the Human Rights Council in 2006.</h4>
+<p></p>
+</li>
+
+
+<li><div class='banner2'><div class='year2'>1946</div></div>
+<h4>Economic and Social Council of the United Nations establishes <span style="color:#d70b52">Commission on the Status of Women (CSW)</span> to promote gender equality and the empowerment of women (ECOSOC Resolution 11)</h4>
+<img src="vaw_images/court_case.jpg" alt="" width="112" height="112" class="displayed"/>
+<p>Against the wishes of women at the United Nations Conference on International Organisation, the CSW was originally established as a sub-commission under the authority of Commission on Human Rights. The first chair of Sub-Commission on the Status of Women, Bodil Begtrup of Denmark, successfully pushed through a resolution that made the CSW an independent body.  </p>
+</li>
+
+
+<li><div class='banner2'><div class='year2'>1948</div></div>
+<h4>On 10 December 1948 the <span style="color:#d70b52">Universal Declaration of Human Rights</span> is adopted – Article 2 recognises that regardless of sex, everyone is guaranteed equal rights and freedoms.</h4>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+<p>“I am very proud to have been instrumental in changing the name of the Declaration of the ‘Rights of Men’ to the Declaration of Human Rights.” <span style="color:#d70b52">Minerva Bernardino of the Dominican Republic, one of the four women who signed the Charter of the United Nations</span> </p>
+</li>
+
+<li><div class='banner2'><div class='year2'>1960</div></div>
+<h4>The President of the Dominican Republic orders the assassination of political activists and sisters, Patria, Minerva and Maria Teresa Mirabal. </h4>
+
+<a href="http://www.codenamebutterflies.org/" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://www.codenamebutterflies.org/" target="_blank">Interested in learning more? Watch the documentary film ‘Code Name: Butterflies’ (2008)</a></p>
+
+<p>…this date later becomes International Day for the Elimination of Violence against Women.</p>
+</li>
+
+</li>
+</ul>
+</section>
+
+
+<section id="period-3" class="period">
+<h2><a href="#period-3">1962 – 1975: Recognising Women’s Role in Development</a></h2>
+
+<ul>
+<li><div class='banner3'><div class='year3'>1967</div></div>
+<h4>The <span style="color:#d70b52">Declaration on the Elimination of Discrimination against Women </span>is accepted by the United Nations General Assembly, demanding states take steps to eliminate harmful beliefs about the inferiority of women. </h4>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner3'><div class='year3'>1972</div></div>
+<h4>The president of the Women’s International Democratic Federation, Hertta Kuusinen of Finland, proposes the “International Women’s Year” (1975) to the Commission on the Status of Women.</h4>
+<p></p>
+</li>
+
+<li><div class='banner3'><div class='year3'>1974</div></div>
+<h4>The wife of Japanese Nobel Peace Prize nominee, Eisako Sato, speaks to the press about her relationship with her husband: “Yes, he is a good husband. He only beats me once a week.”</h4>
+<p>	….Despite the public accusation, Eisako Sato is awarded the Nobel Peace Prize later that year.</p>
+</li>
+
+<li><div class='banner3'><div class='year3'>1974</div></div>
+<h4>At the 25th Session of the Commission on the Status of Women, a new commitment is made to preparing an internationally binding instrument to eliminate discrimination against women (Resolution 1(XXV)).</h4>
+<p></p>
+</li>
+
+<li><div class='banner3'><div class='year3'>1975</div></div>
+<h4>The <span style="color:#d70b52">first World Conference on Women</span> takes place during the International Women’s Year in Mexico City calls for a convention to eliminate discrimination against women. Although violence against women is not mentioned, attention is drawn to equality in the family. </h4>
+<p>Representatives from 133 states attend the Conference, while 6,000 participants attend a parallel NGO forum.   </p>
+</li>
+
+
+</ul>
+
+
+</section>
+<!-- end section 3 -->
+
+
+<section id="period-4" class="period">
+<h2><a href="#period-4">1975-1985: UN Decade for Women</a></h2>
+
+<ul>
+
+<li><div class='banner4'><div class='year4'>1979</div></div>
+<h4>An <span style="color:#d70b52">international bill of rights for women</span> is created: the Convention on the Elimination of all Forms of Discrimination against Women  </h4>
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+<p>‘Violence against women’ is not mentioned in the Convention, however Article 6 requires that “States Parties shall take all appropriate measures, including legislation, to suppress all forms of traffic in women and exploitation of prostitution of women.”</p>
+
+<a href="http://www.lse.ac.uk/researchAndExpertise/Experts/profile.aspx?KeyValue=c.chinkin%40lse.ac.uk" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://www.lse.ac.uk/researchAndExpertise/Experts/profile.aspx?KeyValue=c.chinkin%40lse.ac.uk" target="_blank">Interested in learning more? Read ‘The UN Convention on the Elimination of All Forms of Discrimination against Women: A Commentary’ by Marsha A. Freeman, Christine Chinkin and Beate Rudolf (2013) 
+<span style="italic">Oxford Commentaries on International Law</a></p>
+</li>
+
+<li><div class='banner4'><div class='year4'>1980</div></div>
+<h4>The <span style="color:#d70b52">Second World Conference on Women</span> in Copenhagen adopts a resolution on “battered women and violence in the family”. It also refers to concern for violence in the home. </h4>
+<p>Representatives from 145 states attend the Conference.</p>
+</li>
+
+<li><div class='banner4'><div class='year4'>1980</div></div>
+<h4>The Sixth United Nations Congress on the Prevention of Crime and the Treatment of Offenders calls for equal treatment of women in criminal justice administration – a necessary component of ensuring women’s right to equality before the law.  </h4>
+<p>Representatives from 145 states attend the Conference. </p>
+</li>
+
+<li><div class='banner4'><div class='year4'>1981</div></div>
+<h4>The First Feminist Encuentro for Latin America and the Caribbean declare November 25th  the <span style="color:#d70b52">International Day against Violence against Women</span></h4>
+<p>…which later becomes International Day for the Elimination of Violence against Women in 1991 (UN General Assembly Resolution 54/134).</p>
+</li>
+
+
+<li><div class='banner4'><div class='year4'>1982</div></div>
+<h4>The Committee on the Elimination of all forms of Discrimination against Women (established by the Convention on the Elimination of All Forms of Discrimination against Women) holds its first session. </h4>
+<img src="vaw_images/declaration.jpg" alt="" width="112" height="112" class="displayed"/>
+
+<a href="http://www.unwomen.org/en/news/stories/2013/12/paraguay-cedaw-documentary" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://www.unwomen.org/en/news/stories/2013/12/paraguay-cedaw-documentary" target="_blank">Interested in learning more? Watch Paraguay’s visual tribute to the work of the Committee ‘Todas las Mujeres’ (2013) </a></p>
+</li>
+
+
+<li><div class='banner4'><div class='year4'>1985</div></div>
+<h4>At the <span style="color:#d70b52">third World Conference on Women </span>in Nairobi, government representatives gather to review and appraise the achievements of the UN Decade for Women. At its conclusion, ‘violence against women’ is recognised as an international concern. </h4>
+<p>1,900 representatives from 157 states attend the conference, while 15,000 participants attend the parallel NGO Forum. </p>
+</li>
+
+<li><div class='banner4'><div class='year4'>1985</div></div>
+<h4>Influenced by the Sixth United Nations Congress on the Prevention of Crime and the Treatment of Offenders, as well as recommendations from the Commission on the Status of Women, the United Nations General Assembly adopts the first resolution on domestic violence (Resolution 40/36). </h4>
+<p> </p>
+</li>
+
+</ul>
+
+</section>
+<!-- end section 4 -->
+
+<section id="period-5" class="period">
+<h2><a href="#period-5">1986 – 1995: Towards Equality, Development and Peace</a></h2>
+
+<ul>
+<li><div class='banner5'><div class='year5'>1986</div></div>
+<h4>Created by the 1985 General Assembly Resolution on domestic violence, an <span style="color:#d70b52">Expert Group Meeting on Violence in the Family</span> is formed.</h4>
+<p>…it concludes with recommendations on legal reform, policing, prosecutor and health sector training, social and resource support for survivors. </p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1989</div></div>
+<h4>An expansion of understanding: the report ‘Violence against Women in the Family’ is published. It is the first ever United Nations publication on the issue and demonstrates the many ways violence can be tolerated and condoned by both communities and states. </h4>
+<a href="http://www.wmm.com/sistersinlaw/" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://www.wmm.com/sistersinlaw/" target="_blank">Interested in learning more about the work being done to tackle VAW in the family today? Watch the documentary film ‘Sisters in Law’ (2005).</a></p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1989</div></div>
+<h4><span style="color:#d70b52">General Recommendation No. 12:</span> The Committee on the Elimination of All forms of Discrimination against Women requires States Parties to report on their efforts to eliminate violence against women. </h4>
+<img src="vaw_images/declaration.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1990</div></div>
+<h4>Indian economist and Nobel Laureate Amartya Sen publishes ‘More Than 100 Million Women Are Missing.’</h4>
+<p> “If we could expect equal populations of the two sexes, the low ratio of 0.94 women to men in South Asia, West Asia, and China would indicate a 6 percent deficit of women; but since, in countries where men and women receive similar care, the ratio is about 1.05, the real shortfall is about 11 percent. In China alone this amounts to 50 million “missing women,” taking 1.05 as the benchmark ratio. When that number is added to those in South Asia, West Asia, and North Africa, a great many more than 100 million women are “missing.” These numbers tell us, quietly, a terrible story of inequality and neglect leading to the excess mortality of women.” </p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1991</div></div>
+<h4>The first <span style="color:#d70b52">16 days of Activism against Gender-Based Violence takes place from 25 November</span> (International Day to Eliminate Violence against Women) and 10 December (International Human Rights Day).</h4>
+<p> The Result: 1,000,000 signatures are collected from 124 countries, demanding the United Nations World Conference on Human Rights formally recognise gender-based violence as a human rights issue. </p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1992</div></div>
+<h4><span style="color:#d70b52">“Gender-based violence is a form of discrimination that seriously inhibits women's ability to enjoy rights and freedoms on a basis of equality with men.”</span></h4>
+<p> The Committee on the Elimination of All forms of Discrimination against Women releases General Recommendation No. 19, which incorporates violence against women into the body of the Committee’s work. </p>
+<img src="vaw_images/declaration.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+<li><div class='banner5'><div class='year5'>1992</div></div>
+<h4>The 36th session of the Commission on the Status of Women adopts a draft resolution on violence against women, in all its forms, calling for an inter-sessional working group to develop a draft declaration on violence against women. </h4>
+<p>At the conclusion of this session, the Commission also calls for the strengthening of the Convention on the Elimination of All forms of Discrimination against Women (including the development of an optional protocol) and the creation of a special thematic rapporteur on violence against women.</p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1993</div></div>
+<h4>A change in focus: the <span style="color:#d70b52">Vienna World Conference on Human Rights</span> formally recognises violence against women is a human rights violation. </h4>
+<p>	The conclusion of the Conference calls on the United Nations General Assembly to adopt the draft declaration on violence against women that was created during an inter-sessional working group of the Commission on the Status of Women in 1992. </p>
+
+<a href="https://www.newday.com/film/passionate-politics-life-work-charlotte-bunch" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="https://www.newday.com/film/passionate-politics-life-work-charlotte-bunch" target="_blank">Interested in learning more? Watch the documentary film ‘Passionate Politics: the life and work of Charlotte Bunch’ (2012)</a></p>
+</li>
+
+<li><div class='banner5'><div class='year5'>1993</div></div>
+<h4>The <span style="color:#d70b52">Declaration on the Elimination of Violence against Women</span> is adopted by the United Nations General Assembly (Resolution 48/104). </h4>
+<
+<p>Violence against women is "…any act of gender-based violence that results in, or is likely to result in, physical, sexual or psychological harm or suffering to women, including threats of such acts, coercion or arbitrary deprivation of liberty, whether occurring in public or private life."</p>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+
+<li><div class='banner5'><div class='year5'>1994</div></div>
+<h4>United Nations Commission on Human Rights adopts a mandate to integrate the rights of women into the United Nations human rights framework, with the goal of tackling violence against women (Resolution1994/45). </h4>
+
+<p>It also establishes and appoints the first <span style="color:#d70b52">UN Special Rapporteur on violence against women, its causes and consequences,</span> Ms. Radhika Coomaraswamy of Sri Lanka. </p><img src="vaw_images/judicial_mech.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+
+<li><div class='banner5'><div class='year5'>1994</div></div>
+<h4>Tackling VAW in the Americas: the <span style="color:#d70b52">Convention of Belém do Pará </span>is adopted </h4>
+
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+</ul>
+
+</section>
+<!-- end section 5 -->
+
+
+<section id="period-6" class="period">
+<h2><a href="#period-6">1995 – Present: Women’s Empowerment, Justice and Sustainable Development </a></h2>
+<ul>
+<li><div class='banner6'><div class='year6'>1995</div></div>
+<h4>On International Women’s Day, the United Nations Secretary-General calls on all member states to put the Declaration on the Elimination of Violence against Women into a legally binding form. </h4>
+<p> </p>
+<a href="https://www.youtube.com/watch?v=UBw85DXCc2U" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="https://www.youtube.com/watch?v=UBw85DXCc2U" target="_blank">Interested in learning more? Watch ‘La teta asustada’ (2009), a Peruvian film that portrays the lives of indigenous women in the aftermath of the Sendero Luminoso and into Fujimori’s Government</a></p>
+
+</li>
+
+<li><div class='banner6'><div class='year6'>1995</div></div>
+<h4>On International Women’s Day, the United Nations Secretary-General calls on all member states to put the Declaration on the Elimination of Violence against Women into a legally binding form. </h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1995</div></div>
+<h4>At the conclusion of the <span style="color:#d70b52">fourth World Conference on Women </span>in Beijing, China, the <span style="color:#d70b52">Beijing Declaration and Platform for Action</span> is adopted and becomes the world’s most comprehensive agreement on women’s empowerment and gender equality – violence against women is included as 1 of 12 critical areas of concern.  </h4>
+<p>6,000 government delegates from 189 states and 4,000 NGO representatives attend the Conference. 30,000 NGO representatives attend the parallel NGO Forum at Huairou. </p>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+
+<a href="http://www.upenn.edu/pennpress/book/409.html" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="http://www.upenn.edu/pennpress/book/409.html" target="_blank">Recommended reading: ‘Human Rights of Women: National and International Perspectives’ (1995) Pennsylvania Studies in Human Rights</a></p>
+
+ 
+</li>
+
+
+<li><div class='banner6'><div class='year6'>1996</div></div>
+<h4>At the conclusion of the fourth World Conference on Women in Beijing, China, the Beijing Declaration and Platform for Action is adopted and becomes the world’s most comprehensive agreement on women’s empowerment and gender equality – violence against women is included as 1 of 12 critical areas of concern.  </h4>
+<p>6,000 government delegates from 189 states and 4,000 NGO representatives attend the Conference. 30,000 NGO representatives attend the parallel NGO Forum at Huairou. </p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1996</div></div>
+<h4>Landmark cases on VAW: Aydin v. Turkey</h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>1997</div></div>
+<h4>Bringing men in: four high-level conferences are held to examine violence against women as ‘a male problem’, ‘male culture’ and the impact such violence has on both men and society.</h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p><span style="color:#d70b52">•</span> 	‘Is Violence Masculine? Conference on men and violence’ Swedish government in Stockholm<br />
+
+<span style="color:#d70b52">•</span>	‘Promoting Equality: A common Issue for Men and Women’  Council of Europe in Strasbourg<br />
+
+<span style="color:#d70b52">•</span>	‘Domestic Violence in Latin America and the Carribean, Costs, Programs and Policies’ Inter-American Development Bank in Washington DC<br />
+
+<span style="color:#d70b52">•</span>	‘Male Roles and Masculinities in the Perspective of a Culture of Peace’ Expert Group Meeting on Male Roles and Masculinity in the Perspective of a Culture of Peace, UNESCO in Oslo<br />
+
+</p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1997</div></div>
+<h4>The United Nations General Assembly adopts the ‘Model Strategies and Practical Measures on Elimination of Violence against Women in the Field of Crime Prevention and Criminal Justice’ (Resolution 52/86).</h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1998</div></div>
+<h4>The <span style="color:#d70b52">Rome Statute of the International Criminal Court</span> recognises many gender-based crimes within its jurisdiction as war crimes, crimes against humanity and genocide, including rape, sexual slavery, forced prostitution, forced pregnancy, forced sterilisations, gender-based persecutions, trafficking of person, particularly of women and children, and sexual violence as crimes under its jurisdiction. </h4>
+<img src="vaw_images/court_case.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1998</div></div>
+<h4>The Jean-Paul Akayesu Case: At the International Criminal Tribunal for Rwanda, the Court delivers a landmark decision that recognises wartime rape and sexual assault committed with genocidal intent are crimes of genocide. </h4>
+
+<p>The Tribunal held that “rape is a form of aggression” and that “the central elements of the crime of rape cannot be captured in a mechanical description of objects and body parts”. It defined rape as “a physical invasion of a sexual nature, committed on a person under circumstances which are coercive”. </p>
+
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+
+
+
+<a href="http://www.theuncondemned.com/#the-film" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="http://www.theuncondemned.com/#the-film" target="_blank">Interested in learning more? Watch the documentary film ‘The Uncondemned’ (2015)</a></p>
+
+<li><div class='banner6'><div class='year6'>1999</div></div>
+<h4>“Violence against women is perhaps the most shameful human rights violation. And it is perhaps the most pervasive. It knows no boundaries of geography, culture or wealth. As long as it continues, we cannot claim to be making real progress towards equality, development and peace.”
+Former Secretary-General of the United Nations, Kofi Annan during the videoconference for a world free of violence against women
+</h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>1999</div></div>
+<h4>The <span style="color:#d70b52">Optional Protocol to the Convention on the Elimination of All Forms of Discrimination against Women</span> enters into force.</h4>
+<p>	Individuals and groups such as non-governmental organisations can now access the Committee on the Elimination of All forms of Discrimination against Women to vindicate their rights. </p>
+
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2000</div></div>
+<h4><span style="color:#d70b52">Beijing +5:</span> “Women 2000: Gender Equality, Development and Peace for the Twenty-First Century.”</h4>
+<p>World leaders gather for a Special Session of the United Nations General Assembly to review the progress of the Beijing Platform for Action.</p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2000</div></div>
+<h4>The United Nations Millennium Declaration is adopted and creates the<span style="color:#d70b52"> Millennium Development Goals </span>– 8 interrelated goals dedicated to eradicating all forms of extreme poverty.  </h4>
+
+<p><span style="color:#d70b52">•</span> 	Goal 3: promote gender equality and empower women<br />
+
+<span style="color:#d70b52">•</span>	Target 3.1: Eliminate gender disparity in primary and secondary education, preferably by 2005, and in all levels of education no later than 2015<br />
+
+<span style="color:#d70b52">•</span>	Violence against women is not mentioned 
+<br />
+</p>
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+<li><div class='banner6'><div class='year6'>2000</div></div>
+<h4>The blueprint for women, peace and security: the landmark <span style="color:#d70b52">United Nations Security Council Resolution 1325 </span>is adopted.</h4>
+<p>It is now recognised that armed conflict has a disproportionate and unique impact on women, and their participation is crucial in conflict resolution and sustainable peace building.</p>
+
+<a href="https://www.youtube.com/watch?v=a2Br8DCRxME" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="https://www.youtube.com/watch?v=a2Br8DCRxME" target="_blank">Interested in learning more? Watch UN Women and the Australian Civil-Military Centre’s documentary film ‘Side by Side – Women, Peace and Security’ (2012)</a></p>
+
+
+
+
+
+</li>
+
+<li><div class='banner6'><div class='year6'>2001</div></div>
+<h4>The Kunarac, Kovac and Vukovic Case: the International Criminal Tribunal for the former Yugoslavia delivers a landmark conviction on charges of rape and sexual enslavement as <span style="color:#d70b52">crimes against humanity.</span></h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+
+<a href="http://www.icty.org/en/in-focus/documentaries/sexual-violence-and-triumph-justice" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="http://www.icty.org/en/in-focus/documentaries/sexual-violence-and-triumph-justice" target="_blank">Interested in learning more? Watch the documentary films ‘Sexual Violence and the Triumph of Justice’ (2012) </a></p>
+
+
+<a href="https://www.youtube.com/watch?v=ayMCtiVzG2s" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="https://www.youtube.com/watch?v=ayMCtiVzG2s" target="_blank"> Watch the documentary film ‘I came to testify’ (2011) </a></p>
+
+</li>
+
+<li><div class='banner6'><div class='year6'>2001</div></div>
+<h4>Landmark cases on VAW: Maria de Penha v. Brazil 
+</h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2003</div></div>
+<h4>Tackling VAW in Africa: the <span style="color:#d70b52">Protocol to the African Charter on Human and Peoples’ Rights on the Rights of Women in Africa</span> is  adopted  
+</h4>
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2003</div></div>
+<h4>Landmark cases on VAW, Committee on the Elimination of all forms of Discrimination against Women: <span style="color:#d70b52">AT v. Hungary </span>  
+</h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2004</div></div>
+<h4>Tackling VAW in Southeast Asia: the <span style="color:#d70b52">Declaration on the Elimination of VAW in the ASEAN Region</span>  is adopted.
+</h4>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2004</div></div>
+<h4>Landmark cases on VAW: Meija v. Peru </h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2005</div></div>
+<h4>Committee on the Elimination of All forms of Discrimination against Women completes its first country inquiry, investigating the systematic disappearances and murders of women in Ciudad Juarez, Mexico </h4>
+<img src="vaw_images/declaration.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2005</div></div>
+<h4><span style="color:#d70b52">Beijing +10:</span> At the 49th Session of the Commission on the Status of Women, it is stressed that all states must effectively implement the Beijing Platform for Action – including the elimination of violence against women – in order to achieve development commitments. </h4>
+
+<p>	“Despite the significant increase in activities across the globe to address violence against women, violence against women persists in all countries, and many perpetrators continue to enjoy impunity for their crimes.”</p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2006</div></div>
+<h4>UN Secretary-General’s In-Depth Study on All Forms of Violence against Women is released. It is the first comprehensive report from the UN Secretary-General on the issue. </h4>
+
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2007</div></div>
+<h4> The Alex Tamba Brima, Ibrahim Bazzy Kamarar and Santigie Borbor Kanu  Case: the Special Court for Sierra Leone delivers a landmark decision that recognises “…acts of <span style="color:#d70b52">forced marriage</span> were of similar gravity to several similar enumerated <span style="color:#d70b52">crimes against humanity</span> including enslavement, imprisonment, torture, rape, sexual slavery and sexual violence.” </h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2008</div></div>
+<h4> United Nations Secretary-General launches the campaign ‘UNiTE to End Violence against Women.’ </h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2008</div></div>
+<h4> United Nations Security Council Resolution 1820 </h4>
+<p>Recognising the link between sexual violence and tactics of war, states engaged in armed conflict must immediately act to protect civilians from sexual violence, including <span style="color:#d70b52">training troops</span> and <span style="color:#d70b52">enforcing disciplinary measures</span></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2008</div></div>
+<h4> “Well, we were just abiding by the conditions of our magic potion… We had to rape women in order to make it work, and beat the enemy.”</h4>
+<p>Mai Mai militia member from the Democratic Republic of Congo, in response to the question of why he rapes women.</span></p>
+
+<a href="http://www.hbo.com/documentaries/the-greatest-silence-rape-in-the-congo" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="http://www.hbo.com/documentaries/the-greatest-silence-rape-in-the-congo" target="_blank">Interested in learning more? Watch the documentary film ‘The Greatest Silence: Rape in the Congo’ (2008) </a></p>
+
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2009</div></div>
+<h4>Landmark cases on VAW: Opuz v. Turkey  </h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2009</div></div>
+<h4>United Nations Security Council Resolution 1888 </h4>
+
+<p>	To strengthen the efforts to end conflict-related sexual violence, a <span style="color:#d70b52">Special Representative of the Secretary General on Sexual Violence in Conflict</span> is established. </p>
+<img src="vaw_images/judicial_mech.jpg" alt="" width="112" height="112" class="displayed"/>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2009</div></div>
+<h4>United Nations Security Council Resolution 1889</h4>
+<p>Recognising the challenges to United Nations Security Council Resolution 1325, there must be global monitoring of its implementation, as well as improved responses to the needs of women during and after armed conflict.  </p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2009</div></div>
+<h4>Landmark cases on VAW: Gonzalez et al v. Mexico (the Cotton Fields Case) </h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2010</div></div>
+<h4><span style="color:#d70b52">Beijing +15:</span> At the 54th Session of the Commission on the Status of Women, the United Nations Deputy Secretary-General (and former member of the Committee on the Elimination of All forms of Discrimination against Women) commemorates the adoption of the Beijing Declaration and Platform for Action, acknowledging the link between violence against women and girls, and achieving all development goals – including the Millennium Development Goals: </h4>
+<p>	“And we must eliminate violence against women and girls. This is the most common, most shameful and least punished crime in the world.” </p>
+</li>
+
+
+
+<li><div class='banner6'><div class='year6'>2010</div></div>
+<h4>"Many women who do not dress modestly ... lead young men astray, corrupt their chastity and spread adultery in society, which increases earthquakes.”</h4>
+<p>	Senior Iranian Cleric</p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2010</div></div>
+<h4>The United Nations Commission on Crime Prevention and Criminal Justice releases an updated version of the 1997 ‘Model Strategies and Practical Measures on the Elimination of Violence against Women in the Field of Crime Prevention and Criminal Justice.’ </h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2010</div></div>
+<h4>The United Nations Entity for Gender Equality and the Empowerment of Women –<span style="color:#d70b52"> UN Women </span>– is created. It merges four parts of the United Nations system dedicated to gender equality and women’s empowerment: </h4>
+<p><span style="color:#d70b52">•</span>Division for the Advancement of Women (DAW)<br />
+
+<span style="color:#d70b52">•</span>	International Research and Training Institute for the Advancement of Women (INSTRAW)<br />
+
+<span style="color:#d70b52">•</span>	Office of the Special Adviser on Gender Issues and Advancement of Women (OSAGI)<br />
+
+<span style="color:#d70b52">•</span>United Nations Development Fund for Women (UNIFEM)<br />
+
+</p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2011</div></div>
+<h4>Landmark cases on VAW: EIPR and Interrights v. Egypt  </h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<a href="https://vimeo.com/54195168" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="https://vimeo.com/54195168" target="_blank">Interested in more about access to justice in Egypt for sexual harassment? Watch the Egyptian film ‘678’ (2010)</a></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2011</div></div>
+<h4>Tackling VAW in Europe: the <span style="color:#d70b52">Council of Europe Convention on preventing and combating violence against women and domestic violence </span>(the ‘Istanbul Convention’) is adopted.  </h4>
+<img src="vaw_images/special_rapporteur.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2011</div></div>
+<h4>Tackling VAW in the Middle East and North Africa: the  <span style="color:#d70b52">Arab Strategy for Combating Violence against Women 2011-2020</span> is created.  </h4>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2012</div></div>
+<h4>“Generally, I am of the opinion that those pussies are simply not happy in their sexual life. And that makes them riot. They simply need a good f***, not SIZO. Unfortunately, we don’t have such a capital punishment in our criminal law.” </h4>
+<p>Email from Russian Diplomat to U.S. government official, in response to the arrest of ‘Pussy Riot’ band members, a Russian feminist protest group</p>
+<a href="http://www.hbo.com/documentaries/pussy-riot-a-punk-prayer" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+
+<p class="link">
+<a href="http://www.hbo.com/documentaries/pussy-riot-a-punk-prayer" target="_blank">Interested in learning more? Watch the documentary film ‘Pussy protiv Putina’ (2013)</a></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2012</div></div>
+<h4>The <span style="color:#d70b52">Preventing Sexual Violence in Conflict Initiative </span>is launched by United Kingdom Foreign Secretary William Hague, in partnership with Special Envoy of the UN High Commissioner for Refugees, Angelina Jolie.  </h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2012</div></div>
+<h4>Tackling VAW in the Pacific Islands: the <span style="color:#d70b52">Pacific Leaders Gender Equality Declaration </span>is adopted.</h4>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2012</div></div>
+<h4>“… it was a minor incident.”</h4>
+<p>Andhra Pradesh Congress Committee President (India) on the gang-rape of Iyoti Singh in Delhi. Iyoti Singh died of injuries sustained in the attack a few days later.</p>
+
+<a href="http://indiasdaughter.com/home/" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://indiasdaughter.com/home/" target="_blank">Interested in learning more? Watch the documentary film ‘India’s Daughter’ </a></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2013</div></div>
+<h4>The World Health Organisation releases a report that finds 1 in 3 women will experience physical or sexual violence in their lifetime.</h4>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2013</div></div>
+<h4>The<span style="color:#d70b52">Declaration on the Elimination of VAW and Children in the ASEAN Region</span>is adopted.</h4>
+<img src="vaw_images/treaty.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2013</div></div>
+<h4>“The new measures for social progress must be looked at from the perspective of gender equality, the way in which society treats its people, how it respects the individuality and rights of every human being, how every person is given the same opportunity, the same justice and the same freedom. This is a struggle that must be waged by men and women all over the world.” </h4>
+<p>Liberian President Ellen Johnson Sirleaf</p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2014</div></div>
+<h4>Lessons Learned from the Office of the Prosecutor for the International Criminal Tribunal for Rwanda: the Best Practices Manual for the Investigation and Prosecution of Sexual Violence Crimes in Post-Conflict Regions is released. </h4>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2014</div></div>
+<h4>1,000 delegates and 123 country delegations, including 79 Ministers, participate in the first Global Summit to End Sexual Violence in Conflict</h4>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2014</div></div>
+<h4>A Speech by UN Women Goodwill Ambassador Emma Watson at a special event for the HeForShe campaign is delivered at the United Nations Headquarters, calling on boys and men to stand with women and girls in demanding equality. </h4>
+<p></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2014</div></div>
+<h4>“Why couldn’t you just keep your knees together?” </h4>
+<p>Canadian Provincial Court judge Robin Camp’s remark to a rape survivor. He was later promoted to Federal Court judge.</p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2015</div></div>
+<h4><span style="color:#d70b52">Beijing +20:</span> At the 59th session of the Commission on the Status of Women, focus is turned to the current challenges that have affected the implementation of the Beijing Platform for Action and prevented women’s empowerment.   </h4>
+<p>We all have a responsibility to keep pushing ahead for full implementation, because every time a woman or girl is held back by discrimination or violence, humanity loses. Since the Beijing Conference, irrefutable evidence has accumulated showing that empowering women empowers humanity. Picture it!” </p>
+<p>UN Women Executive Director Phumzile Mlambo-Ngcuka </p>
+</li>
+
+
+
+<li><div class='banner6'><div class='year6'>2015</div></div>
+<h4>“There was NO such thing as sexual assault at the water park, it’s just their bikini quality.”</h4>
+<p>Female vice General Director of Hanoi Entertainment Services Co., Nghiem Hong Hang – the company that runs Ho Tay Park in Vietnam, where a group of 70-80 men attacked over 20 women in a mass sexual assault</p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2015</div></div>
+<h4>Transforming our World: the United Nations General Assembly adopts the Sustainable Development Goals – one target specifically calls for the elimination of all forms of violence against women and girls, while other targets are relevant to this effort (Resolution 70/1).</h4>
+
+<p><span style="color:#d70b52">•</span>Goal 5: Achieve gender equality and empower all women and girls<br />
+
+<span style="color:#d70b52">•</span>	Target 5.2: Eliminate all forms of violence against all women and girls in the public and private spheres, including trafficking and sexual and other types of exploitation.<br />
+</p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2015</div></div>
+<h4>15-year review of the implementation of Security Council Resolution 1325 – UN Women releases the global study “Preventing Conflict, Transforming Justice, Securing the Peace”.</h4>
+
+<p><span style="color:#d70b52">•</span>Of the 9 situations under investigation by the International Criminal Court, 6 have brought charges for gender-based crimes. <br />
+
+<span style="color:#d70b52">•</span>	…and of the 19 cases to come before the International Criminal Court, 14 have included gender-based crimes. <br />
+
+<span style="color:#d70b52">•</span>When women sit at the peace table, there is a 35% increase in the probability of a peace agreement lasting 15 years.<br />
+</p>
+
+<a href="http://www.pbs.org/wnet/women-war-and-peace/full-episodes/pray-the-devil-back-to-hell/" target="_blank" class="link"><img src="vaw_images/link_image.jpg" alt="" width="46" height="46" class="displayed" 
+/></a>
+<p class="link">
+<a href="http://www.pbs.org/wnet/women-war-and-peace/full-episodes/pray-the-devil-back-to-hell/" target="_blank">Interested in learning more about how women’s contribution to peace? Watch the documentary film ‘Pray the Devil Back to Hell’ (2008)</a></p>
+</li>
+
+
+<li><div class='banner6'><div class='year6'>2016</div></div>
+<h4>The Jean-Pierre Bemba Gombo Case: the first International Criminal Court to focus on sex crimes and deliver a decision recognising the use of <span style="color:#d70b52">sexual violence as a weapon of war.</span></h4>
+<img src="vaw_images/commitee.jpg" alt="" width="112" height="112" class="displayed"/>
+<p></p>
+</li>
+
+<li><div class='banner6'><div class='year6'>2016</div></div>
+<h4>Where to next? </span></h4>
+
+<p></p>
+</li>
+
+
+</ul>
+
+</section>
+<!-- end section 6 -->
+
+<script>
+  $('.period h2').click( function() {
+    $(this).next().slideToggle()
+  })
+</script>
+
+</div>
+</div>
+</body>
+</html>
