@@ -100,7 +100,7 @@
 }
 
 #timeline .link a:before {
-  content: url('../images/link_image.jpg');
+  content: url('../vaw_images/link_image.jpg');
 
   display: flex;
   justify-content: center;
