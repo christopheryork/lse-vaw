@@ -14,15 +14,20 @@
 <!-- TODO
   smaller link icon               DONE
   a link change to purple         DONE
-  left justify all text
-  back link only when expanded
+  left justify all text           DONE
+  back link only when expanded    DONE
   add back in responsiveness
+  stack two header images
 -->
 
 <body>
 <div class="w3-container">
 
-<div id="header"><img src="vaw_images/tackling_violence_roundel.jpg"/></div>
+<div id="header">
+<img src="vaw_images/LSEwomen_peaceandsecurity240px.jpg" width="240" height="101"/>
+<img src="vaw_images/tackling_violence_roundel.jpg" width="212" height="214"/>
+<div class="title">Timeline</div>
+</div>
 
 <div id="icons">
 <img src="vaw_images/commitee.jpg"/>
@@ -155,14 +160,12 @@
 </li>
 
 <li><div class='banner'><div class='year'>1946</div></div>
-<h4>Economic and Social Council of the United Nations establishes <span class='authority'>Commission on the Status of Women (CSW)</span> to promote gender equality and the empowerment of women (ECOSOC Resolution 11)</h4>
-<img src='vaw_images/court_case.jpg'/>
+<h4 class='court_case'>Economic and Social Council of the United Nations establishes <span class='authority'>Commission on the Status of Women (CSW)</span> to promote gender equality and the empowerment of women (ECOSOC Resolution 11)</h4>
 <p>Against the wishes of women at the United Nations Conference on International Organisation, the CSW was originally established as a sub-commission under the authority of Commission on Human Rights. The first chair of Sub-Commission on the Status of Women, Bodil Begtrup of Denmark, successfully pushed through a resolution that made the CSW an independent body.</p>
 </li>
 
 <li><div class='banner'><div class='year'>1948</div></div>
-<h4>On 10 December 1948 the Universal Declaration of Human Rights is adopted – Article 2 recognises that regardless of sex, everyone is guaranteed equal rights and freedoms.</h4>
-<img src='vaw_images/treaty.jpg'/>
+<h4 class='treaty'>On 10 December 1948 the Universal Declaration of Human Rights is adopted – Article 2 recognises that regardless of sex, everyone is guaranteed equal rights and freedoms.</h4>
 <p>“I am very proud to have been instrumental in changing the name of the Declaration of the ‘Rights of Men’ to the Declaration of Human Rights.”<span class='attribution'>Minerva Bernardino of the Dominican Republic, one of the four women who signed the Charter of the United Nations</span></p>
 </li>
 
@@ -174,8 +177,7 @@
 </li>
 
 <li><div class='banner'><div class='year'>1967</div></div>
-<h4><span class='attribution'>The Declaration on the Elimination of Discrimination against Women</span> is accepted by the United Nations General Assembly, demanding states take steps to eliminate harmful beliefs about the inferiority of women.</h4>
-<img src='vaw_images/treaty.jpg'/>
+<h4 class='treaty'><span class='attribution'>The Declaration on the Elimination of Discrimination against Women</span> is accepted by the United Nations General Assembly, demanding states take steps to eliminate harmful beliefs about the inferiority of women.</h4>
 <p></p>
 </li>
 
@@ -205,8 +207,7 @@
 </li>
 
 <li><div class='banner'><div class='year'>1979</div></div>
-<h4>An <span class='authority'>international bill of rights for women</span> is created: the Convention on the Elimination of all Forms of Discrimination against Women</h4>
-<img src='vaw_images/special_rapporteur.jpg'/>
+<h4 class='special_rapporteur'>An <span class='authority'>international bill of rights for women</span> is created: the Convention on the Elimination of all Forms of Discrimination against Women</h4>
 <p>‘Violence against women’ is not mentioned in the Convention, however Article 6 requires that “States Parties shall take all appropriate measures, including legislation, to suppress all forms of traffic in women and exploitation of prostitution of women.”</p>
 <p class='link'>
 <a href='http://www.lse.ac.uk/researchAndExpertise/Experts/profile.aspx?KeyValue=c.chinkin%40lse.ac.uk' target='_blank'>Interested in learning more? Read ‘The UN Convention on the Elimination of All Forms of Discrimination against Women: A Commentary’ by Marsha A. Freeman, Christine Chinkin and Beate Rudolf (2013)<span style='italic'>Oxford Commentaries on International Law</a></p>
@@ -228,8 +229,7 @@
 </li>
 
 <li><div class='banner'><div class='year'>1982</div></div>
-<h4>The Committee on the Elimination of all forms of Discrimination against Women (established by the Convention on the Elimination of All Forms of Discrimination against Women) holds its first session.</h4>
-<img src='vaw_images/declaration.jpg'/>
+<h4 class='declaration'>The Committee on the Elimination of all forms of Discrimination against Women (established by the Convention on the Elimination of All Forms of Discrimination against Women) holds its first session.</h4>
 <p class='link'>
 <a href='http://www.unwomen.org/en/news/stories/2013/12/paraguay-cedaw-documentary' target='_blank'>Interested in learning more? Watch Paraguay’s visual tribute to the work of the Committee ‘Todas las Mujeres’ (2013) </a></p>
 </li>
@@ -265,8 +265,7 @@
 </li>
 
 <li><div class='banner'><div class='year'>1989</div></div>
-<h4><span class='authority'>General Recommendation No. 12:</span> The Committee on the Elimination of All forms of Discrimination against Women requires States Parties to report on their efforts to eliminate violence against women.</h4>
-<img src='vaw_images/declaration.jpg'/>
+<h4 class='declaration'><span class='authority'>General Recommendation No. 12:</span> The Committee on the Elimination of All forms of Discrimination against Women requires States Parties to report on their efforts to eliminate violence against women.</h4>
 <p></p>
 </li>
 
@@ -282,8 +281,7 @@
 
 <li><div class='banner'><div class='year'>1992</div></div>
 <h4><span class='authority'>“Gender-based violence is a form of discrimination that seriously inhibits women's ability to enjoy rights and freedoms on a basis of equality with men.”</span></h4>
-<p> The Committee on the Elimination of All forms of Discrimination against Women releases General Recommendation No. 19, which incorporates violence against women into the body of the Committee’s work.</p>
-<img src='vaw_images/declaration.jpg'/>
+<p class='declaration'> The Committee on the Elimination of All forms of Discrimination against Women releases General Recommendation No. 19, which incorporates violence against women into the body of the Committee’s work.</p>
 </li>
 
 <li><div class='banner'><div class='year'>1992</div></div>
@@ -300,21 +298,17 @@
 
 <li><div class='banner'><div class='year'>1993</div></div>
 <h4>The <span class='authority'>Declaration on the Elimination of Violence against Women</span> is adopted by the United Nations General Assembly (Resolution 48/104).</h4>
-<p>Violence against women is "…any act of gender-based violence that results in, or is likely to result in, physical, sexual or psychological harm or suffering to women, including threats of such acts, coercion or arbitrary deprivation of liberty, whether occurring in public or private life."</p>
-<img src='vaw_images/treaty.jpg'/>
+<p class='treaty'>Violence against women is "…any act of gender-based violence that results in, or is likely to result in, physical, sexual or psychological harm or suffering to women, including threats of such acts, coercion or arbitrary deprivation of liberty, whether occurring in public or private life."</p>
 </li>
 
 <li><div class='banner'><div class='year'>1994</div></div>
 <h4>United Nations Commission on Human Rights adopts a mandate to integrate the rights of women into the United Nations human rights framework, with the goal of tackling violence against women (Resolution1994/45).</h4>
-<p>It also establishes and appoints the first <span class='authority'>UN Special Rapporteur on violence against women, its causes and consequences,</span> Ms. Radhika Coomaraswamy of Sri Lanka.</p>
-<img src='vaw_images/judicial_mech.jpg'/>
+<p class='judicial_mech'>It also establishes and appoints the first <span class='authority'>UN Special Rapporteur on violence against women, its causes and consequences,</span> Ms. Radhika Coomaraswamy of Sri Lanka.</p>
 </li>
 
 
 <li><div class='banner'><div class='year'>1994</div></div>
-<h4>Tackling VAW in the Americas: the <span class='authority'>Convention of Belém do Pará </span>is adopted</h4>
-
-<img src='vaw_images/special_rapporteur.jpg'/>
+<h4 class='special_rapporteur'>Tackling VAW in the Americas: the <span class='authority'>Convention of Belém do Pará </span>is adopted</h4>
 </li>
 </ul>
 
@@ -339,8 +333,7 @@
 
 <li><div class='banner'><div class='year'>1995</div></div>
 <h4>At the conclusion of the <span class='authority'>fourth World Conference on Women </span>in Beijing, China, the <span class='authority'>Beijing Declaration and Platform for Action</span> is adopted and becomes the world’s most comprehensive agreement on women’s empowerment and gender equality – violence against women is included as 1 of 12 critical areas of concern.</h4>
-<p>6,000 government delegates from 189 states and 4,000 NGO representatives attend the Conference. 30,000 NGO representatives attend the parallel NGO Forum at Huairou.</p>
-<img src='vaw_images/treaty.jpg'/>
+<p class='treaty'>6,000 government delegates from 189 states and 4,000 NGO representatives attend the Conference. 30,000 NGO representatives attend the parallel NGO Forum at Huairou.</p>
 <p class='link'>
 <a href='http://www.upenn.edu/pennpress/book/409.html' target='_blank'>Recommended reading: ‘Human Rights of Women: National and International Perspectives’ (1995) Pennsylvania Studies in Human Rights</a></p>
 </li>
@@ -352,15 +345,13 @@
 </li>
 
 <li><div class='banner'><div class='year'>1996</div></div>
-<h4>Landmark cases on VAW: Aydin v. Turkey</h4>
-<img src='vaw_images/commitee.jpg'/>
+<h4 class='committee'>Landmark cases on VAW: Aydin v. Turkey</h4>
 <p></p>
 </li>
 
 
 <li><div class='banner'><div class='year'>1997</div></div>
-<h4>Bringing men in: four high-level conferences are held to examine violence against women as ‘a male problem’, ‘male culture’ and the impact such violence has on both men and society.</h4>
-<img src='vaw_images/commitee.jpg'/>
+<h4 class='committee'>Bringing men in: four high-level conferences are held to examine violence against women as ‘a male problem’, ‘male culture’ and the impact such violence has on both men and society.</h4>
 <p><span class='authority'>•</span> 	‘Is Violence Masculine? Conference on men and violence’ Swedish government in Stockholm<br/>
 <span class='authority'>•</span>	‘Promoting Equality: A common Issue for Men and Women’  Council of Europe in Strasbourg<br/>
 <span class='authority'>•</span>	‘Domestic Violence in Latin America and the Carribean, Costs, Programs and Policies’ Inter-American Development Bank in Washington DC<br/>
@@ -374,15 +365,13 @@
 </li>
 
 <li><div class='banner'><div class='year'>1998</div></div>
-<h4>The <span class='authority'>Rome Statute of the International Criminal Court</span> recognises many gender-based crimes within its jurisdiction as war crimes, crimes against humanity and genocide, including rape, sexual slavery, forced prostitution, forced pregnancy, forced sterilisations, gender-based persecutions, trafficking of person, particularly of women and children, and sexual violence as crimes under its jurisdiction.</h4>
-<img src='vaw_images/court_case.jpg'/>
+<h4 class='court_case'>The <span class='authority'>Rome Statute of the International Criminal Court</span> recognises many gender-based crimes within its jurisdiction as war crimes, crimes against humanity and genocide, including rape, sexual slavery, forced prostitution, forced pregnancy, forced sterilisations, gender-based persecutions, trafficking of person, particularly of women and children, and sexual violence as crimes under its jurisdiction.</h4>
 <p></p>
 </li>
 
 <li><div class='banner'><div class='year'>1998</div></div>
 <h4>The Jean-Paul Akayesu Case: At the International Criminal Tribunal for Rwanda, the Court delivers a landmark decision that recognises wartime rape and sexual assault committed with genocidal intent are crimes of genocide.</h4>
-<p>The Tribunal held that “rape is a form of aggression” and that “the central elements of the crime of rape cannot be captured in a mechanical description of objects and body parts”. It defined rape as “a physical invasion of a sexual nature, committed on a person under circumstances which are coercive”. </p>
-<img src="vaw_images/commitee.jpg"/>
+<p class='commitee'>The Tribunal held that “rape is a form of aggression” and that “the central elements of the crime of rape cannot be captured in a mechanical description of objects and body parts”. It defined rape as “a physical invasion of a sexual nature, committed on a person under circumstances which are coercive”. </p>
 <p class="link">
 <a href="http://www.theuncondemned.com/#the-film" target="_blank">Interested in learning more? Watch the documentary film ‘The Uncondemned’ (2015)</a></p>
 
@@ -394,8 +383,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 <li><div class='banner'><div class='year'>1999</div></div>
 <h4>The <span class='attribution'>Optional Protocol to the Convention on the Elimination of All Forms of Discrimination against Women</span> enters into force.</h4>
-<p>	Individuals and groups such as non-governmental organisations can now access the Committee on the Elimination of All forms of Discrimination against Women to vindicate their rights.</p>
-<img src='vaw_images/special_rapporteur.jpg'/>
+<p class='special_rapporteur'>	Individuals and groups such as non-governmental organisations can now access the Committee on the Elimination of All forms of Discrimination against Women to vindicate their rights.</p>
 </li>
 
 <li><div class='banner'><div class='year'>2000</div></div>
@@ -406,14 +394,13 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 <li><div class='banner'><div class='year'>2000</div></div>
 <h4>The United Nations Millennium Declaration is adopted and creates the<span class="attribution"> Millennium Development Goals</span>– 8 interrelated goals dedicated to eradicating all forms of extreme poverty.</h4>
 
-<p><span class="authority">•</span> 	Goal 3: promote gender equality and empower women<br/>
+<p class='special_rapporteur'><span class="authority">•</span> 	Goal 3: promote gender equality and empower women<br/>
 
 <span class="authority">•</span>	Target 3.1: Eliminate gender disparity in primary and secondary education, preferably by 2005, and in all levels of education no later than 2015<br/>
 
 <span class="authority">•</span>	Violence against women is not mentioned
 <br/>
 </p>
-<img src="vaw_images/special_rapporteur.jpg"/>
 </li>
 
 <li><div class='banner'><div class='year'>2000</div></div>
@@ -424,8 +411,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 </li>
 
 <li><div class='banner'><div class='year'>2001</div></div>
-<h4>The Kunarac, Kovac and Vukovic Case: the International Criminal Tribunal for the former Yugoslavia delivers a landmark conviction on charges of rape and sexual enslavement as <span class="attribution">crimes against humanity.</span></h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>The Kunarac, Kovac and Vukovic Case: the International Criminal Tribunal for the former Yugoslavia delivers a landmark conviction on charges of rape and sexual enslavement as <span class="attribution">crimes against humanity.</span></h4>
 <p class="link">
 <a href="http://www.icty.org/en/in-focus/documentaries/sexual-violence-and-triumph-justice" target="_blank">Interested in learning more? Watch the documentary films ‘Sexual Violence and the Triumph of Justice’ (2012) </a></p>
 
@@ -434,39 +420,33 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 </li>
 
 <li><div class='banner'><div class='year'>2001</div></div>
-<h4>Landmark cases on VAW: Maria de Penha v. Brazil</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW: Maria de Penha v. Brazil</h4>
 <p></p>
 </li>
 
 
 <li><div class='banner'><div class='year'>2003</div></div>
-<h4>Tackling VAW in Africa: the <span class="attribution">Protocol to the African Charter on Human and Peoples’ Rights on the Rights of Women in Africa</span> is adopted</h4>
-<img src="vaw_images/special_rapporteur.jpg"/>
+<h4 class='special_rapporteur'>Tackling VAW in Africa: the <span class="attribution">Protocol to the African Charter on Human and Peoples’ Rights on the Rights of Women in Africa</span> is adopted</h4>
 <p></p>
 </li>
 
 <li><div class='banner'><div class='year'>2003</div></div>
-<h4>Landmark cases on VAW, Committee on the Elimination of all forms of Discrimination against Women: <span class="attribution">AT v. Hungary </span></h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW, Committee on the Elimination of all forms of Discrimination against Women: <span class="attribution">AT v. Hungary </span></h4>
 <p></p>
 </li>
 
 <li><div class='banner'><div class='year'>2004</div></div>
-<h4>Tackling VAW in Southeast Asia: the <span class="attribution">Declaration on the Elimination of VAW in the ASEAN Region</span> is adopted.</h4>
-<img src="vaw_images/treaty.jpg"/>
+<h4 class='treaty'>Tackling VAW in Southeast Asia: the <span class="attribution">Declaration on the Elimination of VAW in the ASEAN Region</span> is adopted.</h4>
 <p></p>
 </li>
 
 <li><div class='banner'><div class='year'>2004</div></div>
-<h4>Landmark cases on VAW: Meija v. Peru</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW: Meija v. Peru</h4>
 <p></p>
 </li>
 
 <li><div class='banner'><div class='year'>2005</div></div>
-<h4>Committee on the Elimination of All forms of Discrimination against Women completes its first country inquiry, investigating the systematic disappearances and murders of women in Ciudad Juarez, Mexico</h4>
-<img src="vaw_images/declaration.jpg"/>
+<h4 class='declaration'>Committee on the Elimination of All forms of Discrimination against Women completes its first country inquiry, investigating the systematic disappearances and murders of women in Ciudad Juarez, Mexico</h4>
 <p></p>
 </li>
 
@@ -484,8 +464,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 </li>
 
 <li><div class='banner'><div class='year'>2007</div></div>
-<h4> The Alex Tamba Brima, Ibrahim Bazzy Kamarar and Santigie Borbor Kanu Case: the Special Court for Sierra Leone delivers a landmark decision that recognises “…acts of <span class="attribution">forced marriage</span> were of similar gravity to several similar enumerated <span class="attribution">crimes against humanity</span> including enslavement, imprisonment, torture, rape, sexual slavery and sexual violence.”</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'> The Alex Tamba Brima, Ibrahim Bazzy Kamarar and Santigie Borbor Kanu Case: the Special Court for Sierra Leone delivers a landmark decision that recognises “…acts of <span class="attribution">forced marriage</span> were of similar gravity to several similar enumerated <span class="attribution">crimes against humanity</span> including enslavement, imprisonment, torture, rape, sexual slavery and sexual violence.”</h4>
 <p></p>
 </li>
 
@@ -508,8 +487,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 
 <li><div class='banner'><div class='year'>2009</div></div>
-<h4>Landmark cases on VAW: Opuz v. Turkey</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW: Opuz v. Turkey</h4>
 <p></p>
 </li>
 
@@ -517,8 +495,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 <li><div class='banner'><div class='year'>2009</div></div>
 <h4>United Nations Security Council Resolution 1888</h4>
 
-<p>	To strengthen the efforts to end conflict-related sexual violence, a <span class="attribution">Special Representative of the Secretary General on Sexual Violence in Conflict</span> is established. </p>
-<img src="vaw_images/judicial_mech.jpg"/>
+<p class='judicial_mech'>	To strengthen the efforts to end conflict-related sexual violence, a <span class="attribution">Special Representative of the Secretary General on Sexual Violence in Conflict</span> is established. </p>
 </li>
 
 
@@ -528,8 +505,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 </li>
 
 <li><div class='banner'><div class='year'>2009</div></div>
-<h4>Landmark cases on VAW: Gonzalez et al v. Mexico (the Cotton Fields Case)</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW: Gonzalez et al v. Mexico (the Cotton Fields Case)</h4>
 <p></p>
 </li>
 
@@ -562,15 +538,13 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 
 <li><div class='banner'><div class='year'>2011</div></div>
-<h4>Landmark cases on VAW: EIPR and Interrights v. Egypt</h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>Landmark cases on VAW: EIPR and Interrights v. Egypt</h4>
 <p class="link">
 <a href="https://vimeo.com/54195168" target="_blank">Interested in more about access to justice in Egypt for sexual harassment? Watch the Egyptian film ‘678’ (2010)</a></p>
 </li>
 
 <li><div class='banner'><div class='year'>2011</div></div>
-<h4>Tackling VAW in Europe: the <span class="attribution">Council of Europe Convention on preventing and combating violence against women and domestic violence </span>(the ‘Istanbul Convention’) is adopted.</h4>
-<img src="vaw_images/special_rapporteur.jpg"/>
+<h4 class='special_rapporteur'>Tackling VAW in Europe: the <span class="attribution">Council of Europe Convention on preventing and combating violence against women and domestic violence </span>(the ‘Istanbul Convention’) is adopted.</h4>
 <p></p>
 </li>
 
@@ -596,8 +570,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 
 <li><div class='banner'><div class='year'>2012</div></div>
-<h4>Tackling VAW in the Pacific Islands: the <span class="attribution">Pacific Leaders Gender Equality Declaration </span>is adopted.</h4>
-<img src="vaw_images/treaty.jpg"/>
+<h4 class='treaty'>Tackling VAW in the Pacific Islands: the <span class="attribution">Pacific Leaders Gender Equality Declaration </span>is adopted.</h4>
 <p></p>
 </li>
 
@@ -617,8 +590,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 
 <li><div class='banner'><div class='year'>2013</div></div>
-<h4>The<span class="attribution">Declaration on the Elimination of VAW and Children in the ASEAN Region</span>is adopted.</h4>
-<img src="vaw_images/treaty.jpg"/>
+<h4 class='treaty'>The<span class="attribution">Declaration on the Elimination of VAW and Children in the ASEAN Region</span>is adopted.</h4>
 <p></p>
 </li>
 
@@ -684,8 +656,7 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
 
 <li><div class='banner'><div class='year'>2016</div></div>
-<h4>The Jean-Pierre Bemba Gombo Case: the first International Criminal Court to focus on sex crimes and deliver a decision recognising the use of <span class="attribution">sexual violence as a weapon of war.</span></h4>
-<img src="vaw_images/commitee.jpg"/>
+<h4 class='committee'>The Jean-Pierre Bemba Gombo Case: the first International Criminal Court to focus on sex crimes and deliver a decision recognising the use of <span class="attribution">sexual violence as a weapon of war.</span></h4>
 <p></p>
 </li>
 
@@ -721,7 +692,6 @@ Former Secretary-General of the United Nations, Kofi Annan during the videoconfe
 
   $(window).scroll(function(e) {
     var scroll = $(window).scrollTop()
-    console.log(scroll)
     if (scroll > scroll_begin) {
       $('#back').addClass('active')
     } else {
