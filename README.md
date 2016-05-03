@@ -14,5 +14,5 @@
 - [x] stack two header images
 
 - [x] years are too high
-- [ ] center images
-- [ ] vertical spacing
+- [x] center images
+- [x] vertical spacing
