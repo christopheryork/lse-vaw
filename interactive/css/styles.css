@@ -24,7 +24,7 @@ body {
 }
 
 .event .anchor {
-  opacity: 1; !important; /* TODO important */
+  opacity: 1 !important; /* TODO important */
 }
 
 .event .anchor {

@@ -16,3 +16,11 @@
 - [x] years are too high
 - [x] center images
 - [x] vertical spacing
+
+## Instructions
+
+- To update the data file from the main project's index.html file:
+
+  cd interactive
+  jspm run scrape.js
+  

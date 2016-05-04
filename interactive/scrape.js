@@ -18,11 +18,21 @@ $('.period').each( function() {
 
   $(this).find('li').each( function() {
     let year = $(this).find('.year').text()
-    let title = $(this).find('h4').text()
-    let text = $(this).find('p').text()
+    let title = enquote( $(this).find('h4').text() )
+    let text = enquote( $(this).find('h4').nextAll().text() )
 
-    lines.push([period, year, title, text].join('\t').trim())
+    let cols = [period, year, title, text]
+
+    lines.push(cols.join('\t'))
   })
 })
 
 let out = fs.writeFileSync('./data.tsv', lines.join('\n'))
+
+function enquote(s) {
+  // see RFC4180: http://tools.ietf.org/html/rfc4180
+  if (s.match(/(\t|"|\n)/)) {
+    s = '"' + s.replace(/"/g, '""') + '"'
+  }
+  return s
+}
