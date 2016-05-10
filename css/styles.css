@@ -7,7 +7,8 @@
 }
 
 #header {
-  margin: 0 0 3em 0;
+  margin: 0;
+  padding: 0 0 30px 0;
   background: #231c4e;
 
   display: flex;
@@ -36,13 +37,12 @@
   margin-bottom: 1em;
 }
 
-
-
 #icons {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   flex: 0 1 auto;
+	margin: 0 40px 0 40px;
 }
 
 #icons img {
@@ -50,9 +50,18 @@
   height: 112px;
 }
 
+#icons ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+#timeline {
+  margin: 0 40px 25px 40px;
+}
+
 #timeline .period > h2 {
   font-size: 12pt;
-  margin: 10px 20px 0 20px; /* NB. must keep margin-bottom: 0 for smooth accordion */
+  margin: 10px 0 0 0; /* NB. must keep margin-bottom: 0 for smooth accordion */
   padding: 10px;
   border-radius: 2em;
   border: none;
@@ -69,7 +78,7 @@
 }
 
 #timeline .period li {
-  margin: 0;
+  margin: 0 .5em 0 .5em;
   padding: 0 0 10px 0;
 }
 
@@ -196,11 +205,4 @@
 #timeline.accordion > section:nth-child(5) .year { background-color: #CF0054; box-shadow : 0 0 0 5px #CF0054; }
 #timeline.accordion > section:nth-child(6) h2 { background: #F7931E; }
 #timeline.accordion > section:nth-child(6) .banner { background: #fde9d2; }
-#timeline.accordion > section:nth-child(6) .year { background-color: #F7931E; box-shadow : 0 0 0 5px #F7931E; }ul li h4 {
-}
-
-
-ul
-{
-list-style-type: none;
-}
+#timeline.accordion > section:nth-child(6) .year { background-color: #F7931E; box-shadow : 0 0 0 5px #F7931E; }
