@@ -23,135 +23,6 @@
   margin: 1em;
 }
 
-#intro .title {
-  font-size: 15pt;
-  color: #425280;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-#intro .link a  {
- color: #d70b52;
- text-decoration: none;
- 
-}
-
-/* visited link */
-#intro .link a:visited {
-	color: #e94e1b;
-	text-decoration: none;
-}
-
-/* mouse over link */
-#intro .link a:hover {
-	color: #80007B;
-	text-decoration: none;
-}
-
-/* selected link */
-#intro .link a:active {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-
-
-
-
-
-
-
-
-#intro h4 {
-  font-size: 13pt;
-  color: #425280;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  text-decoration: none;
-}
-
-
-/* unvisited link */
-#intro h4 .link a {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-/* visited link */
-#intro h4 .link a:visited {
-	color: #e94e1b;
-	text-decoration: none;
-}
-
-/* mouse over link */
-#intro h4 .link a:hover {
-	color: #80007B;
-	text-decoration: none;
-}
-
-/* selected link */
-#intro h4 .link a:active {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-
-
-
-#h4 {
-  font-size: 13pt;
-  color: #425280;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  text-decoration: none;
-}
-
-
-/* unvisited link */
-#h4 .link a {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-/* visited link */
-#h4 .link a:visited {
-	color: #e94e1b;
-	text-decoration: none;
-}
-
-/* mouse over link */
-#h4 .link a:hover {
-	color: #80007B;
-	text-decoration: none;
-}
-
-/* selected link */
-#h4 .link a:active {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #icons {
   display: flex;
   flex-flow: row wrap;
@@ -162,7 +33,7 @@
 
  /*#icons img {
  NB. must keep margin-bottom: 0 for smooth accordion width: 112px;
-  height: 112px; 
+  height: 112px;
 }*/
 
 #icons ul {
@@ -251,14 +122,18 @@
 #timeline em {
   font-style: normal;
   color: #d70b52;
-   text-decoration: none;
-} 
-
-#timeline .link {
-  font-size: 12pt;
+  text-decoration: none;
 }
 
- #timeline .link a:before {
+#timeline .period h4 a {
+	text-decoration: none;
+}
+
+#timeline .period h4 a:hover {
+  color: #d70b52;
+}
+
+ #timeline p.link a:before {
   content: url('../vaw_images/link_image31.jpg');
   display: flex;
   float: left;
@@ -267,74 +142,27 @@
 	margin-right: 10px;
 	margin-left: 0px;
 	margin-bottom: 10px;
- 
+
  /*justify-content: center;
 */}
 
-#timeline .link a {
+#timeline p.link {
+  font-size: 12pt;
+  display: flex;
+  align-items: center;
+ /*
+justify-content: center;*/
+}
+
+#timeline p.link a {
 	color: #968F8D;
 	text-decoration: none;
 }
 
-#timeline .link a:hover {
+#timeline p.link a:hover {
   color: #e94e1b;
   text-decoration: none;
 }
-
-#timeline .link {
-  display: flex;
-  align-items: center;
- /* 
-justify-content: center;*/
-}
-
-#timeline .link:hover {
-  color: #795197;
-}
-
-
-
-.textlink .link a:before {
-  float: left;
-	color: #425280;
-	margin-top: 0px;
-	margin-right: 10px;
-	margin-left: 0px;
-	margin-bottom: 10px;
-	text-decoration: none;
- 
- /*justify-content: center;
-*/}
-
-.textlink .link a {
-	color: #d70b52;
-	text-decoration: none;
-}
-
-.textlink .link a:hover {
-  color: #795197;
-  text-decoration: none;
-}
-
-.textlink .link {
-  display: flex;
-  align-items: center;
- /* 
-justify-content: center;*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #timeline .badges {
   display: flex;
