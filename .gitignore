@@ -1,5 +1,5 @@
 node_modules
 jspm_packages
 build.js*
-interactive/
-_notes/
+interactive
+_notes
