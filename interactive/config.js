@@ -17,7 +17,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "cheerio": "npm:cheerio@0.20.0",
     "core-js": "npm:core-js@1.2.6",
-    "d3": "npm:d3@4.0.0-alpha.44",
     "form-data": "npm:form-data@1.0.0-rc4",
     "fs": "github:jspm/nodelibs-fs@0.1.2",
     "normalize": "npm:normalize@0.3.1",
@@ -62,7 +61,7 @@ System.config({
       "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
-      "process": "npm:process@0.11.4"
+      "process": "npm:process@0.11.5"
     },
     "github:jspm/nodelibs-punycode@0.1.0": {
       "punycode": "npm:punycode@1.3.2"
@@ -340,94 +339,6 @@ System.config({
       "cssom": "npm:cssom@0.3.1",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0"
-    },
-    "npm:d3-axis@0.3.2": {
-      "d3-scale": "npm:d3-scale@0.7.2",
-      "d3-selection": "npm:d3-selection@0.7.3",
-      "d3-transition": "npm:d3-transition@0.2.10"
-    },
-    "npm:d3-drag@0.2.1": {
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-selection": "npm:d3-selection@0.7.3"
-    },
-    "npm:d3-dsv@0.3.2": {
-      "rw": "npm:rw@1.3.2"
-    },
-    "npm:d3-force@0.6.3": {
-      "d3-collection": "npm:d3-collection@0.2.0",
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-quadtree": "npm:d3-quadtree@0.7.3",
-      "d3-timer": "npm:d3-timer@0.4.4",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:d3-interpolate@0.8.0": {
-      "d3-color": "npm:d3-color@0.4.2"
-    },
-    "npm:d3-request@0.4.7": {
-      "d3-collection": "npm:d3-collection@0.2.0",
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-dsv": "npm:d3-dsv@0.3.2",
-      "xmlhttprequest": "npm:xmlhttprequest@1.8.0"
-    },
-    "npm:d3-scale@0.7.2": {
-      "d3-array": "npm:d3-array@0.7.1",
-      "d3-collection": "npm:d3-collection@0.2.0",
-      "d3-color": "npm:d3-color@0.4.2",
-      "d3-format": "npm:d3-format@0.5.1",
-      "d3-interpolate": "npm:d3-interpolate@0.8.0",
-      "d3-time": "npm:d3-time@0.2.5",
-      "d3-time-format": "npm:d3-time-format@0.3.2"
-    },
-    "npm:d3-shape@0.6.1": {
-      "d3-path": "npm:d3-path@0.1.5"
-    },
-    "npm:d3-time-format@0.3.2": {
-      "d3-time": "npm:d3-time@0.2.5"
-    },
-    "npm:d3-transition@0.2.10": {
-      "d3-color": "npm:d3-color@0.4.2",
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-ease": "npm:d3-ease@0.7.0",
-      "d3-interpolate": "npm:d3-interpolate@0.8.0",
-      "d3-selection": "npm:d3-selection@0.7.3",
-      "d3-timer": "npm:d3-timer@0.4.4"
-    },
-    "npm:d3-zoom@0.2.2": {
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-drag": "npm:d3-drag@0.2.1",
-      "d3-interpolate": "npm:d3-interpolate@0.8.0",
-      "d3-selection": "npm:d3-selection@0.7.3",
-      "d3-transition": "npm:d3-transition@0.2.10"
-    },
-    "npm:d3@4.0.0-alpha.44": {
-      "d3-array": "npm:d3-array@0.7.1",
-      "d3-axis": "npm:d3-axis@0.3.2",
-      "d3-collection": "npm:d3-collection@0.2.0",
-      "d3-color": "npm:d3-color@0.4.2",
-      "d3-dispatch": "npm:d3-dispatch@0.4.3",
-      "d3-drag": "npm:d3-drag@0.2.1",
-      "d3-dsv": "npm:d3-dsv@0.3.2",
-      "d3-ease": "npm:d3-ease@0.7.0",
-      "d3-force": "npm:d3-force@0.6.3",
-      "d3-format": "npm:d3-format@0.5.1",
-      "d3-hierarchy": "npm:d3-hierarchy@0.2.3",
-      "d3-interpolate": "npm:d3-interpolate@0.8.0",
-      "d3-path": "npm:d3-path@0.1.5",
-      "d3-polygon": "npm:d3-polygon@0.2.1",
-      "d3-quadtree": "npm:d3-quadtree@0.7.3",
-      "d3-queue": "npm:d3-queue@2.0.3",
-      "d3-random": "npm:d3-random@0.2.1",
-      "d3-request": "npm:d3-request@0.4.7",
-      "d3-scale": "npm:d3-scale@0.7.2",
-      "d3-selection": "npm:d3-selection@0.7.3",
-      "d3-shape": "npm:d3-shape@0.6.1",
-      "d3-time": "npm:d3-time@0.2.5",
-      "d3-time-format": "npm:d3-time-format@0.3.2",
-      "d3-timer": "npm:d3-timer@0.4.4",
-      "d3-transition": "npm:d3-transition@0.2.10",
-      "d3-voronoi": "npm:d3-voronoi@0.3.3",
-      "d3-zoom": "npm:d3-zoom@0.2.2",
-      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:dashdash@1.14.0": {
       "assert-plus": "npm:assert-plus@1.0.0",
@@ -771,6 +682,11 @@ System.config({
     "npm:process@0.11.4": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
+    "npm:process@0.11.5": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "vm": "github:jspm/nodelibs-vm@0.1.0"
+    },
     "npm:public-encrypt@4.0.0": {
       "bn.js": "npm:bn.js@4.11.4",
       "browserify-rsa": "npm:browserify-rsa@4.0.1",
@@ -845,11 +761,6 @@ System.config({
     },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:rw@1.3.2": {
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:sax@0.5.8": {
@@ -1002,15 +913,6 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "punycode": "github:jspm/nodelibs-punycode@0.1.0",
       "tr46": "npm:tr46@0.0.3"
-    },
-    "npm:xmlhttprequest@1.8.0": {
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "child_process": "github:jspm/nodelibs-child_process@0.1.0",
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "http": "github:jspm/nodelibs-http@1.7.1",
-      "https": "github:jspm/nodelibs-https@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "url": "github:jspm/nodelibs-url@0.1.0"
     }
   }
 });

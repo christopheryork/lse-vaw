@@ -1,4 +1,4 @@
-import d3 from 'd3'
+// import d3 from 'd3'
 
 // from https://github.com/d3/d3-plugins/tree/master/fisheye
 
