@@ -199,9 +199,7 @@ function update(dur=0, center=null) {
     .attr('cy', height)
 
   svg.selectAll('.event .stage_1')
-    .attr('opacity', (d) => center ? opacity(Math.abs(center[0] - x(d.year))) : 0)
-
-//      (center && Math.abs(center[0] - x(d.year)) < width * CURSOR_PROPORTION / 2 ? 1 : 0))
+    .attr('opacity', (d) => (center && Math.abs(center[0] - x(d.year)) < width * CURSOR_PROPORTION / 2 ? 1 : 0))
 
   let x_axis = svg.select('.x.axis')
     .call(axis)
