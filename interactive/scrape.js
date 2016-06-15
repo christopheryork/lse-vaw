@@ -18,8 +18,8 @@ $('.period').each( function() {
 
   $(this).find('li').each( function() {
     let year = $(this).find('.year').text()
-    let title = enquote( $(this).find('h4').text() )
-    let text = enquote( $(this).find('h4').nextAll().text() )
+    let title = enquote( $(this).find('h4').text().trim() )
+    let text = enquote( $(this).find('h4').nextAll().text().trim() )
 
     let cols = [period, year, title, text]
 
