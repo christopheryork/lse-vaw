@@ -2,211 +2,177 @@
 
 import fe from './fisheye'
 
-const MARGINS = { top: 100, right: 100, bottom: 150, left: 100 }
+const BLURB_WIDTH = 250
 
-const FISHEYE_DISTORTION = 8
-const FISHEYE_DUR = 2000
+const MARGINS = { top: 75, right: 75, bottom: 150, left: 75 }
+const MIN_SIZE = { width: BLURB_WIDTH + MARGINS.left + MARGINS.right,
+                   height: 100 + MARGINS.top + MARGINS.bottom }
 
-const BLURB_WIDTH = 350
-
-const CURSOR_PROPORTION = 0.2
+const FISHEYE_DISTORTION = 10
 
 // state
 
-let width, height
+let width, height   // screen state
+let x, y            // scales
+let density         // addit'l data
+let axis            // components
 
-let x, y, axis
 
-let data, density
+// install svg elements
+let svg = d3.select('body')
+  .append('svg')
 
+let g = svg.append('g')
+  .attr('transform', 'translate(' + [MARGINS.left, MARGINS.top] + ')')
+
+g.append('rect')
+  .attr('class', 'ether')
+g.append('path')
+  .attr('class', 'density')
+g.append('g')
+  .attr('class', 'x axis')
+g.append('g')
+  .attr('class', 'anchors')
+g.append('g')
+  .attr('class', 'events')
+g.append('g')
+  .attr('class', 'blurbs')
 
 // bootstrap
 d3.tsv('./data.tsv', (err, data) => {
   if(err) throw err
   // convert data to javascript types
-  data.forEach( (d) => { d.year = + d.year } )
+  data.forEach( (d,i) => { d.year = +d.year; d.index = i } )
   // load and install visualization
-  install(document.body, data)
-  // update the installed visualization
+  let years = data.map( (d) => d.year )
+  // calculate initial state and size
+  calibrate(years)
+  // initial draw
+  redraw(data, width/2)
+  // update the installed visualization on window resize
   throttle('resize', 'optimizedResize')
-  d3.select(window).on('optimizedResize', resize)
+  d3.select(window).on('optimizedResize', function() {
+    calibrate(years)
+    redraw(data, width/2)
+  })
   // animate to new focus on mouse hover
   d3.select('svg .ether')
-    .on('mousemove', function() { focus(d3.mouse(this)) })
-    .on('mouseout',  function() { focus(null) })
+    .on('mousemove', function() { redraw(data, d3.mouse(this)[0]) })
 })
 
-// change fisheye distortion to focus on given screen point
-let focus_time
 
-function focus(center) {
-  let dur = FISHEYE_DUR
-  if(center) {
-    focus_time = focus_time || new Date()
-    dur = Math.max(0, FISHEYE_DUR - (new Date() - focus_time))
-  } else {
-    focus_time = null
-  }
-  update(dur, center)
-}
+// new merged update function (install + update)
+function redraw(data, center) {
+  // adjust size
+  svg.attr('width', width + MARGINS.left + MARGINS.right)
+    .attr('height', height + MARGINS.top + MARGINS.bottom)
+  svg.select('.ether')
+    .attr('width', width)
+    .attr('height', height + MARGINS.bottom)
 
-// run once to set up state
-function install(elem, new_data) {
+  // adjust fisheye scale
+  x.focus(center)
 
-  data = new_data
-
-  // set up global state
-  width = window.innerWidth - MARGINS.left - MARGINS.right
-  height = window.innerHeight - MARGINS.top - MARGINS.bottom
-
-  // d3 configuration and state
-
-  x = fe.fisheye.scale(d3.scaleLinear)
-    .domain(d3.extent(data.map((d) => d.year)))
-    .distortion(0)
-
-  axis = d3.axisBottom(x)
-    .tickFormat(d3.format('4d'))
-
-  // data analysis
-  let kde = kernelDensityEstimator(epanechnikovKernel(20), x.ticks(100))
-  density = kde(data.map( (d) => d.year ))
-
-  y = d3.scaleLinear()
-    .domain(d3.extent(density.map( (d) => d[1] )))
-
-  // svg elements
-
-  let svg = d3.select(elem)
-    .append('svg')
-      .append('g')
-        .attr('transform', 'translate(' + [MARGINS.left, MARGINS.top] + ')')
-
-  svg.append('rect')
-    .attr('class', 'ether')
-
-  svg.append('path')
-    .attr('class', 'density')
-
-  svg.append('g')
-    .attr('class', 'x axis')
-
-  let event = svg.append('g')
-      .attr('class', 'events')
+  // draw events
+  let event = svg.select('.events')
     .selectAll('.event')
-      .data(data)
-    .enter().append('g')
-      .attr('class', 'event')
+      .data(data, (d) => d.index)
+  event.exit().remove()                // NOT TECHNICALLY NECESSARY
+  event.enter().append('circle')
+    .attr('class', 'event')
+    .merge(event)
+      .attr('cx', (d) => x(d.year))
+      .attr('cy', height)
 
-  let blurb = event.append('g')
-    .attr('class', 'blurb stage_1')
-    .attr('transform', 'translate(15,15)')
+  // draw blurbs
+  let num_blurbs = Math.floor(width / BLURB_WIDTH)
+  let distances = data.map( (d) => Math.abs( x(d.year) - center))
+  let blurb_events = d3.range(0,distances.length)
+    .sort( (a,b) => d3.ascending(distances[a], distances[b]))   // sort event indices by distance from center
+    .slice(0, num_blurbs)                                       // subset by number of visible blurbs
+    .map( (i) => data[i] )                                      // dereference indices
+    .sort( (a,b) => d3.ascending(a.year, b.year))               // show in timeline order left to right
+  let blurb_scale = d3.scaleBand()
+    .domain(d3.range(0,num_blurbs))
+    .range([0,width])
+    .padding(.15)
 
-  blurb.append('text')
-    .attr('class', 'title')
-    .attr('x', 0)
-    .attr('y', '5em')
-    .attr('dy', '.66em')
-    .text( (d) => d.title )
-    .call(wrap, BLURB_WIDTH)
+  let blurb_bounds = []
+  let blurb = svg.select('.blurbs')
+    .selectAll('.blurb')
+      .data(blurb_events, (d) => d.index)
 
-  blurb.append('text')
-    .attr('class', 'text')
-    .attr('x', 0)
-    .attr('y', '7em')
-    .attr('dy', '.66em')
-    .text( (d) => d.text )
-    .call(wrap, BLURB_WIDTH)
+  blurb.exit()
+    .each( function(d,i) { blurb_bounds[i] = null })
+    .remove()
+  let blurb_enter = blurb.enter().append('g')
+    .attr('class', 'blurb')
 
-  event.append('path')
-    .attr('class', 'pole stage_1')
-
-  event.append('circle')
-    .attr('class', 'anchor stage_0')
-
-  let badge = event.append('g')
-    .attr('class', 'badge stage_1')
-    .attr('transform', 'translate(' + (BLURB_WIDTH/2) + ')')
-
+  // year badge at top of blurb
+  let badge = blurb_enter.append('g')
+    .attr('class', 'badge')
+    .attr('transform', 'translate(' + (blurb_scale.bandwidth()/2) + ')')
   badge.append('circle')
     .attr('class', 'year border')
   badge.append('circle')
     .attr('class', 'year')
-
   badge.append('text')
     .attr('text-anchor', 'middle')
-    .attr('y1', -height)
     .attr('dy', '.3em')
     .text( (d) => d.year )
 
-  let cursor = svg.append('path')
-    .attr('class', 'cursor')
+  // blurb text
 
-  update()
+  blurb_enter.append('text')
+    .attr('class', 'text')
+    .attr('x', 0)
+    .attr('y', '5em')
+    .attr('dy', '.66em')
+    .text( (d) => d.title /* + d.text */ )
+    .call(wrap, blurb_scale.bandwidth())
 
-  d3.selectAll('.stage_1')
-    .attr('opacity', 0)
-}
+  blurb_enter.merge(blurb)
+    .attr('transform', (d,i) => 'translate(' + blurb_scale(i) + ')')
+    .each( function(d,i) {
+      blurb_bounds[i] = d3.select(this).node().getBBox()
+    })
 
-function update(dur=0, center=null) {
+  // anchor lines between timeline and blurbs
+  let anchor = svg.select('.anchors')
+    .selectAll('.anchor')
+      .data(blurb_events, (d) => d.index)
 
-  // immediate changes
+  anchor.exit().remove()
+  anchor.enter().append('path')
+    .attr('class', 'anchor')
+    .merge(anchor)
+      .attr('d', (d,i) => {
+        const BLURB_PADDING = 25
+        const ANCHOR_NUDGE = 150
+        let blurb_margin = blurb_scale.bandwidth() * blurb_scale.paddingInner() / 5
+        let curve = d3.line().curve(d3.curveBasis)
+        let blurb_x = blurb_scale(i) + blurb_scale.bandwidth()/2
+        let blurb_y = blurb_bounds[i].y + blurb_bounds[i].height + blurb_margin*3
+        let anchor_y = d3.max(blurb_bounds, (d) => d.y + d.height) + blurb_margin*3 + ANCHOR_NUDGE / 2
+        let event_x = x(d.year)
 
-  x.distortion(center ? FISHEYE_DISTORTION : 0)
-   .focus(center ? center[0] : 0)
+        let points = [ [blurb_x, blurb_y],
+                     [blurb_x, anchor_y],
+                     [event_x, height - ANCHOR_NUDGE],
+                     [event_x, height] ]
+        let path = 'M' + [blurb_scale(i) - blurb_margin, blurb_y - blurb_margin*2] +
+                   'v' + (BLURB_PADDING/2) +
+                   'h' + (blurb_scale.bandwidth() + blurb_margin*2) +
+                   'v' + (-BLURB_PADDING/2)
+        return path + curve(points) } )
 
-  x.range([0, width])
-  y.range([height, height * 1 / 5])
-
-  let svg = d3.select('svg')
-    .attr('width', width + MARGINS.left + MARGINS.right)
-    .attr('height', height + MARGINS.top + MARGINS.bottom)
-
-  svg.select('.ether')
-    .attr('width', width)
-    .attr('height', height)
-
-  svg.select('.x.axis')
-    .attr('transform', 'translate(' + [0, height] + ')')
-
-
-  // (possibly) animated changes
-
-  let opacity = d3.scalePow()
-    .exponent(.5)
-    .domain([0, width/2])
-    .range([1, 0])
-
-  let line = d3.area()
-    .x( (d) => x(d[0]) )
-    .y1( (d) => y(d[1]) )
-    .y0(height)
-    .curve(d3.curveBasis)
-
-  svg = svg.transition()
-    .duration(dur)
-
-  svg.select('.density')
-    .attr('d', line(density))
-
-  svg.selectAll('.event')
-    .attr('transform', (d) => 'translate(' + x(d.year) + ')')
-
-  svg.selectAll('.event .pole')
-    .attr('d', 'M0 ' + height + 'V0H' + (BLURB_WIDTH / 2))
-
-  svg.selectAll('.event .anchor')
-    .attr('cy', height)
-
-  svg.selectAll('.event .stage_1')
-    .attr('opacity', (d) => (center && Math.abs(center[0] - x(d.year)) < width * CURSOR_PROPORTION / 2 ? 1 : 0))
-
+  // draw axes
   let x_axis = svg.select('.x.axis')
+    .attr('transform', 'translate(' + [0, height] + ')')
     .call(axis)
 
   x_axis.selectAll('line')
       .attr('y2', '4em')
-      .attr('y1', -height)
 
   x_axis.selectAll('text')
         .style('text-anchor', 'start')
@@ -214,21 +180,35 @@ function update(dur=0, center=null) {
         .attr('x', '-4em')
         .attr('y', 0)
         .attr('dy', '-.3em')
-
-  svg.select('.cursor')
-     .attr('d', center ? 'M' + (center[0] - width * CURSOR_PROPORTION / 2) + ' ' + -MARGINS.top + 'h' + (width * CURSOR_PROPORTION) +
-                         'v' + (height + MARGINS.top + MARGINS.bottom) + 'h' + -(width * CURSOR_PROPORTION) : '')
 }
 
 
-// update visualization when window is resized
-function resize(new_width, new_height) {
-  width = new_width || window.innerWidth - MARGINS.left - MARGINS.right
-  height = new_height || window.innerHeight - MARGINS.top - MARGINS.bottom
+// set state based on screen size
+function calibrate(years) {
+  width = Math.max(window.innerWidth - MARGINS.left - MARGINS.right, MIN_SIZE.width)
+  height = Math.max(window.innerHeight - MARGINS.top - MARGINS.bottom, MIN_SIZE.height)
 
-  update()
+  console.log('calibrated: ' + width + 'x' + height)
+
+  // major scale: years
+  x = fe.fisheye.scale(d3.scaleLinear)
+    .domain(d3.extent(years))
+    .range([0,width])
+    .distortion(FISHEYE_DISTORTION)
+
+  // data analysis based on x scale
+  let kde = kernelDensityEstimator(epanechnikovKernel(20), x.ticks(100))
+  density = kde(years)
+
+  // minor scale: density
+  y = d3.scaleLinear()
+    .domain(d3.extent(density.map( (d) => d[1] )))
+    .range([height, height * 1 / 5])
+
+  // major scale axis
+  axis = d3.axisBottom(x)
+    .tickFormat(d3.format('4d'))
 }
-
 
 // utilities
 function throttle(type, name, obj) {
@@ -268,9 +248,10 @@ function wrap(text, width) {
         line = [],
         lineNumber = 0,
         lineHeight = 1.1, // ems
+        x = text.attr("x"),
         y = text.attr("y"),
         dy = parseFloat(text.attr("dy")),
-        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em")
     while (word = words.pop()) {
       line.push(word)
       tspan.text(line.join(" "))
@@ -278,7 +259,7 @@ function wrap(text, width) {
         line.pop()
         tspan.text(line.join(" "))
         line = [word]
-        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word)
+        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word)
       }
     }
   })
