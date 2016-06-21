@@ -146,25 +146,7 @@ function redraw(data, center) {
   anchor.enter().append('path')
     .attr('class', 'anchor')
     .merge(anchor)
-      .attr('d', (d,i) => {
-        const BLURB_PADDING = 25
-        const ANCHOR_NUDGE = 150
-        let blurb_margin = blurb_scale.bandwidth() * blurb_scale.paddingInner() / 5
-        let curve = d3.line().curve(d3.curveBasis)
-        let blurb_x = blurb_scale(i) + blurb_scale.bandwidth()/2
-        let blurb_y = blurb_bounds[i].y + blurb_bounds[i].height + blurb_margin*3
-        let anchor_y = d3.max(blurb_bounds, (d) => d.y + d.height) + blurb_margin*3 + ANCHOR_NUDGE / 2
-        let event_x = x(d.year)
-
-        let points = [ [blurb_x, blurb_y],
-                     [blurb_x, anchor_y],
-                     [event_x, height - ANCHOR_NUDGE],
-                     [event_x, height] ]
-        let path = 'M' + [blurb_scale(i) - blurb_margin, blurb_y - blurb_margin*2] +
-                   'v' + (BLURB_PADDING/2) +
-                   'h' + (blurb_scale.bandwidth() + blurb_margin*2) +
-                   'v' + (-BLURB_PADDING/2)
-        return path + curve(points) } )
+      .attr('d', anchor_d)
 
   // draw axes
   let x_axis = svg.select('.x.axis')
@@ -180,8 +162,30 @@ function redraw(data, center) {
         .attr('x', '-4em')
         .attr('y', 0)
         .attr('dy', '-.3em')
-}
 
+  // SVG path string for an anchor
+  function anchor_d(d,i) {
+    const BLURB_PADDING = 25
+    const ANCHOR_NUDGE = height / 4
+    let blurb_margin = blurb_scale.bandwidth() * blurb_scale.paddingInner() / 5
+    let curve = d3.line().curve(d3.curveBasis)
+    let blurb_x = blurb_scale(i) + blurb_scale.bandwidth()/2
+    let blurb_y = blurb_bounds[i].y + blurb_bounds[i].height + blurb_margin*3
+    let anchor_y = d3.max(blurb_bounds, (d) => d.y + d.height) + blurb_margin*3 + ANCHOR_NUDGE / 2
+    let event_x = x(d.year)
+
+    let points = [ [event_x, height],
+                   [event_x, height - ANCHOR_NUDGE],
+                   [blurb_x, anchor_y],
+                   [blurb_x, blurb_y] ]
+    let path = 'M' + [blurb_scale(i) - blurb_margin, blurb_y - blurb_margin*2] +
+               'v' + (BLURB_PADDING/2) +
+               'h' + (blurb_scale.bandwidth() + blurb_margin*2) +
+               'v' + (-BLURB_PADDING/2)
+    return curve(points) + path
+  }
+
+}
 
 // set state based on screen size
 function calibrate(years) {
